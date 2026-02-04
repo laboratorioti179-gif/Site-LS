@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LS Agent AI - Automação de IA & Apps</title>
+    <meta name="description" content="LS Soluções - Especialistas em Automação de IA e Desenvolvimento de Aplicativos Administrativos.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            light: '#1e293b',
+                            accent: '#38bdf8', // Sky 400
+                            glow: '#0ea5e9',   // Sky 500
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Fontes Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Efeito de brilho no fundo */
+        .bg-glow {
+            background: radial-gradient(circle at top center, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+        }
+        
+        /* Animação suave para os cards */
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.3);
+            border-color: #38bdf8;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-300 antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo LS -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-gradient-to-br from-brand-accent to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/30">
+                        LS
+                    </div>
+                    <span class="text-white font-bold text-xl tracking-tight">LS <span class="text-brand-accent font-light">Agent AI</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-white hover:text-brand-accent transition px-3 py-2 rounded-md font-medium">Início</a>
+                        <a href="#servicos" class="hover:text-brand-accent transition px-3 py-2 rounded-md font-medium">Soluções</a>
+                        <a href="#sobre" class="hover:text-brand-accent transition px-3 py-2 rounded-md font-medium">Sobre</a>
+                        <a href="#contato" class="bg-brand-accent text-brand-dark hover:bg-white hover:text-brand-dark transition px-5 py-2 rounded-full font-bold">Fale Conosco</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="md:hidden hidden bg-brand-light border-b border-white/10" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" onclick="toggleMenu()" class="text-white block px-3 py-2 rounded-md text-base font-medium">Início</a>
+                <a href="#servicos" onclick="toggleMenu()" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Soluções</a>
+                <a href="#sobre" onclick="toggleMenu()" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
+                <a href="#contato" onclick="toggleMenu()" class="text-brand-accent block px-3 py-2 rounded-md text-base font-bold">Fale Conosco</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-glow min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-brand-accent text-sm font-semibold mb-8 backdrop-blur-sm animate-fade-in-up">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                Inovação em Automação
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-6 leading-tight">
+                Transforme sua empresa com <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-blue-500">Inteligência Artificial</span>
+            </h1>
+            
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10">
+                A <strong>LS</strong> desenvolve soluções de automação e aplicativos administrativos personalizados para eliminar tarefas repetitivas e escalar seu negócio.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#servicos" class="px-8 py-4 bg-brand-accent text-brand-dark rounded-full font-bold text-lg hover:bg-white transition shadow-[0_0_20px_rgba(56,189,248,0.5)] flex items-center justify-center gap-2">
+                    Nossas Soluções
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="#contato" class="px-8 py-4 border border-slate-600 text-white rounded-full font-semibold text-lg hover:border-brand-accent hover:text-brand-accent transition flex items-center justify-center">
+                    Agendar Consultoria
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-10">
+                <div>
+                    <div class="text-3xl font-bold text-white mb-1">+50</div>
+                    <div class="text-sm text-slate-500">Projetos Entregues</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white mb-1">10x</div>
+                    <div class="text-sm text-slate-500">Mais Eficiência</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white mb-1">24/7</div>
+                    <div class="text-sm text-slate-500">Operação Automatizada</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white mb-1">100%</div>
+                    <div class="text-sm text-slate-500">Customizável</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-24 bg-brand-light relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-accent font-semibold tracking-wide uppercase text-sm mb-2">O Que Fazemos</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">Soluções Sob Medida</h3>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-brand-dark p-8 rounded-2xl border border-white/5 hover-card">
+                    <div class="w-14 h-14 bg-blue-900/50 rounded-xl flex items-center justify-center text-brand-accent mb-6">
+                        <i data-lucide="bot" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Automação com IA</h4>
+                    <p class="text-slate-400 leading-relaxed">
+                        Implementamos chatbots inteligentes, análise de dados preditiva e agentes autônomos para revolucionar seu atendimento e operações.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-brand-dark p-8 rounded-2xl border border-white/5 hover-card">
+                    <div class="w-14 h-14 bg-blue-900/50 rounded-xl flex items-center justify-center text-brand-accent mb-6">
+                        <i data-lucide="layout-dashboard" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Aplicativos Administrativos</h4>
+                    <p class="text-slate-400 leading-relaxed">
+                        Dashboards de gestão, CRMs internos e sistemas de controle desenvolvidos especificamente para as regras de negócio da sua empresa.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brand-dark p-8 rounded-2xl border border-white/5 hover-card">
+                    <div class="w-14 h-14 bg-blue-900/50 rounded-xl flex items-center justify-center text-brand-accent mb-6">
+                        <i data-lucide="workflow" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Integração de Sistemas</h4>
+                    <p class="text-slate-400 leading-relaxed">
+                        Conectamos suas ferramentas atuais (ERP, Planilhas, E-mail) através de APIs seguras para criar um fluxo de trabalho unificado e sem erros.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Feature Section -->
+    <section id="sobre" class="py-24 bg-brand-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-brand-accent/20 blur-xl rounded-full"></div>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Dashboard de Dados" 
+                             class="relative rounded-2xl shadow-2xl border border-white/10 w-full object-cover h-[400px]">
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -right-6 bg-brand-light p-4 rounded-xl border border-white/10 shadow-xl flex items-center gap-3">
+                            <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center text-green-400">
+                                <i data-lucide="trending-up" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Otimização</div>
+                                <div class="font-bold text-white text-lg">+135%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Por que escolher a <span class="text-brand-accent">LS</span>?</h2>
+                    <p class="text-slate-400 text-lg mb-6 leading-relaxed">
+                        Não somos apenas desenvolvedores; somos estrategistas de eficiência. A LS nasceu para preencher a lacuna entre a complexidade da Inteligência Artificial e a necessidade prática das empresas modernas.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-accent flex-shrink-0 mt-0.5"></i>
+                            <span class="text-slate-300">Foco total em redução de custos operacionais.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-accent flex-shrink-0 mt-0.5"></i>
+                            <span class="text-slate-300">Interfaces intuitivas que sua equipe vai adorar usar.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-accent flex-shrink-0 mt-0.5"></i>
+                            <span class="text-slate-300">Suporte contínuo e escalabilidade garantida.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Contact Section -->
+    <section id="contato" class="py-24 relative">
+        <div class="absolute inset-0 bg-brand-accent/5"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-brand-light p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-white mb-4">Pronto para automatizar?</h2>
+                    <p class="text-slate-400">Deixe seus dados e nossa equipe entrará em contato para uma análise gratuita.</p>
+                </div>
+
+                <form class="space-y-6" onsubmit="handleForm(event)">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Nome</label>
+                            <input type="text" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="Seu nome" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Empresa</label>
+                            <input type="text" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="Nome da empresa">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-2">Email</label>
+                        <input type="email" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="voce@empresa.com" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-2">Mensagem</label>
+                        <textarea rows="4" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="Como podemos ajudar?"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-brand-accent text-white font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] transition transform hover:-translate-y-0.5">
+                        Enviar Mensagem
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-brand-accent to-blue-600 rounded flex items-center justify-center text-white font-bold text-sm">
+                    LS
+                </div>
+                <span class="text-slate-400 text-sm">© 2024 LS Automação. Todos os direitos reservados.</span>
+            </div>
+            
+            <div class="flex gap-6">
+                <a href="#" class="text-slate-500 hover:text-brand-accent transition"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-500 hover:text-brand-accent transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-500 hover:text-brand-accent transition"><i data-lucide="mail" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Inicializa os ícones
+        lucide.createIcons();
+
+        // Toggle do Menu Mobile
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Simulação de envio de formulário
+        function handleForm(event) {
+            event.preventDefault();
+            const btn = event.target.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Enviado com Sucesso!';
+            btn.classList.add('bg-green-600');
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('bg-green-600');
+                event.target.reset();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
