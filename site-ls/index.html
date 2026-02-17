@@ -63,10 +63,14 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Logo LS -->
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="w-10 h-10 bg-gradient-to-br from-brand-accent to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/30">
-                        LS
-                    </div>
-                    <span class="text-white font-bold text-xl tracking-tight">LS <span class="text-brand-accent font-light">Agent AI</span></span>
+                    <svg width="45" height="45" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sm">
+                        <path d="M50 5L89.5 27.5V72.5L50 95L10.5 72.5V27.5L50 5Z" fill="#0c1d42" stroke="#0ea5e9" stroke-width="2"/>
+                        <path d="M50 25L72 37.5V62.5L50 75L28 62.5V37.5L50 25Z" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M72 50H89.5M72 40H85M72 60H85" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="50" cy="50" r="8" stroke="#38bdf8" stroke-width="2"/>
+                        <path d="M50 42V35M50 65V58M42 50H35M65 50H58" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span class="text-white font-bold text-xl tracking-tight hidden sm:block">LS <span class="text-brand-accent font-light">Agent AI</span></span>
                 </div>
                 
                 <!-- Desktop Menu -->
@@ -121,7 +125,7 @@
                     Nossas Soluções
                     <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </a>
-                <a href="#contato" class="px-8 py-4 border border-slate-600 text-white rounded-full font-semibold text-lg hover:border-brand-accent hover:text-brand-accent transition flex items-center justify-center">
+                <a href="https://wa.me/5511988241182" target="_blank" class="px-8 py-4 border border-slate-600 text-white rounded-full font-semibold text-lg hover:border-brand-accent hover:text-brand-accent transition flex items-center justify-center">
                     Agendar Consultoria
                 </a>
             </div>
@@ -195,7 +199,6 @@
 
     <!-- App Showcase Section -->
     <section id="apps" class="py-24 bg-brand-dark relative border-t border-white/5">
-        <!-- Decorative Background Element -->
         <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-brand-accent/5 to-transparent pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -213,12 +216,18 @@
                 <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 md:p-10 border border-orange-500/30 shadow-[0_0_40px_-10px_rgba(255,87,34,0.15)] group hover:scale-[1.02] transition-transform duration-300">
                     <div class="flex flex-col h-full justify-between">
                         <div>
-                            <!-- Logo Recreation based on Image -->
+                            <!-- Logo AutoPrime (Recriado com base na imagem enviada) -->
                             <div class="flex items-center gap-3 mb-8">
-                                <div class="w-14 h-14 bg-[#FF4500] rounded-xl flex items-center justify-center shadow-lg shadow-orange-900/50 transform -rotate-3 group-hover:rotate-0 transition duration-300">
-                                    <i data-lucide="paint-roller" class="text-black w-8 h-8"></i>
+                                <div class="w-14 h-14 bg-[#FF4500] rounded-[15px] flex items-center justify-center shadow-lg shadow-orange-900/50 transform rotate-[-5deg] group-hover:rotate-0 transition duration-300">
+                                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Ícone do pincel/esponja estilizado baseado na imagem -->
+                                        <path d="M19 11V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M5 11H19V13C19 14.1046 18.1046 15 17 15H7C5.89543 15 5 14.1046 5 13V11Z" fill="white" stroke="white" stroke-width="1"/>
+                                        <path d="M12 15V21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M9 21H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
                                 </div>
-                                <div class="font-black text-3xl md:text-4xl italic tracking-tighter select-none">
+                                <div class="font-black text-3xl md:text-4xl italic tracking-tighter select-none flex items-center">
                                     <span class="text-white">AUTO</span><span class="text-[#FF4500]">PRIME</span>
                                 </div>
                             </div>
@@ -245,24 +254,24 @@
                                     <div class="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center mr-3">
                                         <i data-lucide="check" class="w-3 h-3 text-orange-500"></i>
                                     </div>
-                                    Histórico de carros
+                                    Controle de Estoque
                                 </li>
                                 <li class="flex items-center text-slate-300">
                                     <div class="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center mr-3">
                                         <i data-lucide="check" class="w-3 h-3 text-orange-500"></i>
                                     </div>
-                                    Controle de Estoque
+                                    Histórico de carros
                                 </li>
                             </ul>
                         </div>
 
-                        <button class="w-full bg-[#FF4500] hover:bg-[#ff5722] text-white font-bold py-4 rounded-xl transition flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                        <a href="https://www.instagram.com/autoprime_app/" target="_blank" class="w-full bg-[#FF4500] hover:bg-[#ff5722] text-white font-bold py-4 rounded-xl transition flex items-center justify-center gap-2 text-center">
                             Conhecer o Sistema <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Secondary App: LS Admin -->
+                <!-- Secondary Apps -->
                 <div class="grid gap-6">
                     <div class="bg-brand-light p-8 rounded-2xl border border-white/5 hover-border-brand-accent/30 transition">
                         <div class="flex items-center gap-4 mb-4">
@@ -274,9 +283,6 @@
                         <p class="text-slate-400 mb-4">
                             Um hub administrativo centralizado que conecta RH, Financeiro e Operacional em uma única interface intuitiva.
                         </p>
-                        <a href="#" class="text-brand-accent text-sm font-semibold hover:text-white transition flex items-center gap-1">
-                            Ver detalhes <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                        </a>
                     </div>
 
                     <div class="bg-brand-light p-8 rounded-2xl border border-white/5 hover-border-brand-accent/30 transition">
@@ -289,9 +295,6 @@
                         <p class="text-slate-400 mb-4">
                             Atendimento ao cliente 24/7 com processamento de linguagem natural (NLP) treinado especificamente para o seu nicho.
                         </p>
-                        <a href="#" class="text-brand-accent text-sm font-semibold hover:text-white transition flex items-center gap-1">
-                            Ver detalhes <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                        </a>
                     </div>
                 </div>
 
@@ -303,31 +306,12 @@
     <section id="sobre" class="py-24 bg-brand-dark overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="lg:w-1/2">
-                    <div class="relative">
-                        <div class="absolute -inset-4 bg-brand-accent/20 blur-xl rounded-full"></div>
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Dashboard de Dados" 
-                             class="relative rounded-2xl shadow-2xl border border-white/10 w-full object-cover h-[400px]">
-                        
-                        <!-- Floating Badge -->
-                        <div class="absolute -bottom-6 -right-6 bg-brand-light p-4 rounded-xl border border-white/10 shadow-xl flex items-center gap-3">
-                            <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center text-green-400">
-                                <i data-lucide="trending-up" class="w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs text-slate-400">Otimização</div>
-                                <div class="font-bold text-white text-lg">+135%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:w-1/2">
+                <div class="lg:w-1/2 text-center lg:text-left">
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Por que escolher a <span class="text-brand-accent">LS</span>?</h2>
                     <p class="text-slate-400 text-lg mb-6 leading-relaxed">
                         Não somos apenas desenvolvedores; somos estrategistas de eficiência. A LS nasceu para preencher a lacuna entre a complexidade da Inteligência Artificial e a necessidade prática das empresas modernas.
                     </p>
-                    <ul class="space-y-4">
+                    <ul class="space-y-4 inline-block text-left">
                         <li class="flex items-start gap-3">
                             <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-accent flex-shrink-0 mt-0.5"></i>
                             <span class="text-slate-300">Foco total em redução de custos operacionais.</span>
@@ -336,11 +320,19 @@
                             <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-accent flex-shrink-0 mt-0.5"></i>
                             <span class="text-slate-300">Interfaces intuitivas que sua equipe vai adorar usar.</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-accent flex-shrink-0 mt-0.5"></i>
-                            <span class="text-slate-300">Suporte contínuo e escalabilidade garantida.</span>
-                        </li>
                     </ul>
+                </div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <!-- Grande Versão do Logotipo LS -->
+                    <div class="relative group">
+                        <div class="absolute -inset-10 bg-brand-accent/20 blur-3xl rounded-full opacity-50 group-hover:opacity-100 transition duration-1000"></div>
+                        <svg width="250" height="250" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="relative">
+                            <path d="M50 5L89.5 27.5V72.5L50 95L10.5 72.5V27.5L50 5Z" fill="#0f172a" stroke="#0ea5e9" stroke-width="2"/>
+                            <path d="M50 25L72 37.5V62.5L50 75L28 62.5V37.5L50 25Z" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M72 50H95M72 40H88M72 60H88" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="50" cy="50" r="10" stroke="#38bdf8" stroke-width="2"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
@@ -360,25 +352,15 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-slate-400 mb-2">Nome</label>
-                            <input type="text" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="Seu nome" required>
+                            <input type="text" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition" placeholder="Seu nome" required>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-400 mb-2">Empresa</label>
-                            <input type="text" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="Nome da empresa">
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Email</label>
+                            <input type="email" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition" placeholder="voce@empresa.com" required>
                         </div>
                     </div>
                     
-                    <div>
-                        <label class="block text-sm font-medium text-slate-400 mb-2">Email</label>
-                        <input type="email" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="voce@empresa.com" required>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-slate-400 mb-2">Mensagem</label>
-                        <textarea rows="4" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="Como podemos ajudar?"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-brand-accent text-white font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] transition transform hover:-translate-y-0.5">
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-brand-accent text-white font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] transition">
                         Enviar Mensagem
                     </button>
                 </form>
@@ -390,42 +372,35 @@
     <footer class="bg-brand-dark border-t border-white/5 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-gradient-to-br from-brand-accent to-blue-600 rounded flex items-center justify-center text-white font-bold text-sm">
-                    LS
-                </div>
-                <span class="text-slate-400 text-sm">© 2024 LS Automação. Todos os direitos reservados.</span>
+                <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 5L89.5 27.5V72.5L50 95L10.5 72.5V27.5L50 5Z" stroke="#38bdf8" stroke-width="4"/>
+                </svg>
+                <span class="text-slate-400 text-sm">© 2024 LS Agent AI. Todos os direitos reservados.</span>
             </div>
             
             <div class="flex gap-6">
                 <a href="#" class="text-slate-500 hover:text-brand-accent transition"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
                 <a href="#" class="text-slate-500 hover:text-brand-accent transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                <a href="#" class="text-slate-500 hover:text-brand-accent transition"><i data-lucide="mail" class="w-5 h-5"></i></a>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script>
-        // Inicializa os ícones
         lucide.createIcons();
 
-        // Toggle do Menu Mobile
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
-        // Simulação de envio de formulário
         function handleForm(event) {
             event.preventDefault();
             const btn = event.target.querySelector('button');
-            const originalText = btn.innerText;
-            
-            btn.innerText = 'Enviado com Sucesso!';
+            btn.innerText = 'Enviado!';
             btn.classList.add('bg-green-600');
-            
             setTimeout(() => {
-                btn.innerText = originalText;
+                btn.innerText = 'Enviar Mensagem';
                 btn.classList.remove('bg-green-600');
                 event.target.reset();
             }, 3000);
