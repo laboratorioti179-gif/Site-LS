@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LS Agent AI - Automação de IA & Apps</title>
-    <meta name="description" content="LS Soluções - Especialistas em Automação de IA e Desenvolvimento de Aplicativos Administrativos.">
+    <title>LS Agent AI - Automação de IA & Apps Administrativos</title>
+    <meta name="description" content="LS Soluções - Especialistas em Automação de IA e Desenvolvimento de Aplicativos Administrativos personalizados para empresas.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,14 +16,17 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#0f172a',
-                            light: '#1e293b',
-                            accent: '#38bdf8', // Sky 400
-                            glow: '#0ea5e9',   // Sky 500
+                            dark: '#020617',
+                            light: '#0f172a',
+                            accent: '#38bdf8', 
+                            glow: '#0ea5e9',
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -34,163 +37,198 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Fontes Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body { font-family: 'Inter', sans-serif; }
         
-        /* Efeito de brilho no fundo */
         .bg-glow {
-            background: radial-gradient(circle at top center, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+            background: radial-gradient(circle at top center, rgba(56, 189, 248, 0.12) 0%, rgba(2, 6, 23, 0) 60%);
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
-        /* Animação suave para os cards */
         .hover-card {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .hover-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.3);
-            border-color: #38bdf8;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.25);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animação simples para itens ao scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal styling */
+        .modal-open {
+            overflow: hidden;
         }
     </style>
 </head>
 <body class="bg-brand-dark text-slate-300 antialiased overflow-x-hidden">
 
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/seu-numero" target="_blank" class="fixed bottom-6 right-6 z-[60] group">
+        <div class="absolute -inset-2 bg-green-500/20 rounded-full blur group-hover:bg-green-500/40 transition duration-300"></div>
+        <div class="relative bg-green-500 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition hover:scale-110 active:scale-95">
+            <i data-lucide="message-circle" class="w-7 h-7"></i>
+        </div>
+    </a>
+
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
+    <nav class="fixed w-full z-50 bg-brand-dark/80 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo LS -->
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <svg width="45" height="45" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sm">
-                        <path d="M50 5L89.5 27.5V72.5L50 95L10.5 72.5V27.5L50 5Z" fill="#0c1d42" stroke="#0ea5e9" stroke-width="2"/>
-                        <path d="M50 25L72 37.5V62.5L50 75L28 62.5V37.5L50 25Z" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M72 50H89.5M72 40H85M72 60H85" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="50" cy="50" r="8" stroke="#38bdf8" stroke-width="2"/>
-                        <path d="M50 42V35M50 65V58M42 50H35M65 50H58" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    <span class="text-white font-bold text-xl tracking-tight hidden sm:block">LS <span class="text-brand-accent font-light">Agent AI</span></span>
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-10 h-10 bg-gradient-to-br from-brand-accent to-blue-600 rounded-lg flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-blue-500/20 group-hover:rotate-6 transition-transform">
+                        LS
+                    </div>
+                    <span class="text-white font-bold text-xl tracking-tight uppercase">LS <span class="text-brand-accent font-light">Agent AI</span></span>
                 </div>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="text-white hover:text-brand-accent transition px-3 py-2 rounded-md font-medium">Início</a>
-                        <a href="#servicos" class="hover:text-brand-accent transition px-3 py-2 rounded-md font-medium">Soluções</a>
-                        <a href="#sobre" class="hover:text-brand-accent transition px-3 py-2 rounded-md font-medium">Sobre</a>
-                        <a href="#contato" class="bg-brand-accent text-brand-dark hover:bg-white hover:text-brand-dark transition px-5 py-2 rounded-full font-bold">Fale Conosco</a>
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#home" class="text-slate-400 hover:text-white transition font-medium">Início</a>
+                        <a href="#servicos" class="text-slate-400 hover:text-white transition font-medium">Soluções</a>
+                        <a href="#processo" class="text-slate-400 hover:text-white transition font-medium">Processo</a>
+                        <a href="#apps" class="text-slate-400 hover:text-white transition font-medium">Cases</a>
+                        <a href="#contato" class="bg-white text-brand-dark hover:bg-brand-accent hover:text-brand-dark transition px-6 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-white/5">Fale Conosco</a>
                     </div>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="-mr-2 flex md:hidden">
-                    <button type="button" onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
-                        <i data-lucide="menu" class="w-8 h-8"></i>
+                <div class="md:hidden">
+                    <button type="button" onclick="toggleMenu()" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition">
+                        <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Menu (Hidden by default) -->
-        <div class="md:hidden hidden bg-brand-light border-b border-white/10" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" onclick="toggleMenu()" class="text-white block px-3 py-2 rounded-md text-base font-medium">Início</a>
-                <a href="#servicos" onclick="toggleMenu()" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Soluções</a>
-                <a href="#sobre" onclick="toggleMenu()" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
-                <a href="#contato" onclick="toggleMenu()" class="text-brand-accent block px-3 py-2 rounded-md text-base font-bold">Fale Conosco</a>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden glass mx-4 rounded-2xl mt-2 overflow-hidden border border-white/10 shadow-2xl" id="mobile-menu">
+            <div class="px-4 py-6 space-y-4 text-center font-medium">
+                <a href="#home" onclick="toggleMenu()" class="block text-white text-lg">Início</a>
+                <a href="#servicos" onclick="toggleMenu()" class="block text-slate-300 text-lg">Soluções</a>
+                <a href="#processo" onclick="toggleMenu()" class="block text-slate-300 text-lg">Processo</a>
+                <a href="#apps" onclick="toggleMenu()" class="block text-slate-300 text-lg">Portfólio</a>
+                <a href="#contato" onclick="toggleMenu()" class="block bg-brand-accent text-brand-dark py-3 rounded-xl font-bold">Solicitar Proposta</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-glow min-h-screen flex items-center">
+    <section id="home" class="relative pt-32 pb-20 lg:pt-52 lg:pb-32 bg-glow min-h-screen flex flex-col justify-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-brand-accent text-sm font-semibold mb-8 backdrop-blur-sm animate-fade-in-up">
-                <i data-lucide="sparkles" class="w-4 h-4"></i>
-                Inovação em Automação
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 text-brand-accent text-xs md:text-sm font-bold mb-8 uppercase tracking-widest animate-bounce">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                </span>
+                Automação 4.0 Disponível
             </div>
             
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-6 leading-tight">
-                Transforme sua empresa com <br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-blue-500">Inteligência Artificial</span>
+            <h1 class="text-4xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter mb-8 leading-[1.1]">
+                O futuro da sua empresa <br class="hidden md:block"/>
+                <span class="text-gradient">é automático.</span>
             </h1>
             
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10">
-                A <strong>LS</strong> desenvolve soluções de automação e aplicativos administrativos personalizados para eliminar tarefas repetitivas e escalar seu negócio.
+            <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-slate-400 mb-12 leading-relaxed">
+                Desenvolvemos agentes inteligentes e aplicativos de gestão de alto nível para empresas que querem <strong>parar de operar o básico</strong> e começar a escalar o lucro.
             </p>
             
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#servicos" class="px-8 py-4 bg-brand-accent text-brand-dark rounded-full font-bold text-lg hover:bg-white transition shadow-[0_0_20px_rgba(56,189,248,0.5)] flex items-center justify-center gap-2">
-                    Nossas Soluções
-                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            <div class="flex flex-col sm:flex-row justify-center gap-5">
+                <a href="#contato" class="px-10 py-5 bg-brand-accent text-brand-dark rounded-full font-extrabold text-lg hover:bg-white transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(56,189,248,0.4)] flex items-center justify-center gap-3">
+                    Começar Agora
+                    <i data-lucide="zap" class="w-5 h-5 fill-current"></i>
                 </a>
-                <a href="https://wa.me/5511988241182" target="_blank" class="px-8 py-4 border border-slate-600 text-white rounded-full font-semibold text-lg hover:border-brand-accent hover:text-brand-accent transition flex items-center justify-center">
-                    Agendar Consultoria
+                <a href="#apps" class="px-10 py-5 glass text-white rounded-full font-bold text-lg hover:border-brand-accent/50 hover:text-brand-accent transition-all flex items-center justify-center">
+                    Ver Portfólio
                 </a>
             </div>
 
-            <!-- Stats -->
-            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-10">
+            <!-- Trusted By / Stats -->
+            <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-t border-white/5 reveal">
                 <div>
-                    <div class="text-3xl font-bold text-white mb-1">+50</div>
-                    <div class="text-sm text-slate-500">Projetos Entregues</div>
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">95%</div>
+                    <div class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-semibold">Processos Automatizados</div>
                 </div>
                 <div>
-                    <div class="text-3xl font-bold text-white mb-1">10x</div>
-                    <div class="text-sm text-slate-500">Mais Eficiência</div>
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">+10k</div>
+                    <div class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-semibold">Horas Salvas/Ano</div>
                 </div>
                 <div>
-                    <div class="text-3xl font-bold text-white mb-1">24/7</div>
-                    <div class="text-sm text-slate-500">Operação Automatizada</div>
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">24/7</div>
+                    <div class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-semibold">Suporte com IA</div>
                 </div>
                 <div>
-                    <div class="text-3xl font-bold text-white mb-1">100%</div>
-                    <div class="text-sm text-slate-500">Customizável</div>
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">Zero</div>
+                    <div class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-semibold">Erros Manuais</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="servicos" class="py-24 bg-brand-light relative">
+    <section id="servicos" class="py-32 bg-brand-light/30 relative border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-brand-accent font-semibold tracking-wide uppercase text-sm mb-2">O Que Fazemos</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-white">Soluções Sob Medida</h3>
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-brand-accent font-bold tracking-[0.2em] uppercase text-sm mb-4">Soluções Atuais</h2>
+                <h3 class="text-4xl md:text-5xl font-extrabold text-white">Nossas frentes de atuação</h3>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="bg-brand-dark p-8 rounded-2xl border border-white/5 hover-card">
-                    <div class="w-14 h-14 bg-blue-900/50 rounded-xl flex items-center justify-center text-brand-accent mb-6">
-                        <i data-lucide="bot" class="w-8 h-8"></i>
+                <div class="glass p-10 rounded-3xl hover-card reveal">
+                    <div class="w-16 h-16 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent mb-8">
+                        <i data-lucide="cpu" class="w-9 h-9"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Automação com IA</h4>
-                    <p class="text-slate-400 leading-relaxed">
-                        Implementamos chatbots inteligentes, análise de dados preditiva e agentes autônomos para revolucionar seu atendimento e operações.
+                    <h4 class="text-2xl font-bold text-white mb-4">Agentes de IA</h4>
+                    <p class="text-slate-400 leading-relaxed text-lg">
+                        Cérebros digitais treinados no seu negócio para realizar vendas, suporte e triagem sem intervenção humana.
                     </p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="bg-brand-dark p-8 rounded-2xl border border-white/5 hover-card">
-                    <div class="w-14 h-14 bg-blue-900/50 rounded-xl flex items-center justify-center text-brand-accent mb-6">
-                        <i data-lucide="layout-dashboard" class="w-8 h-8"></i>
+                <div class="glass p-10 rounded-3xl hover-card reveal" style="transition-delay: 100ms">
+                    <div class="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-400 mb-8">
+                        <i data-lucide="layers" class="w-9 h-9"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Aplicativos Administrativos</h4>
-                    <p class="text-slate-400 leading-relaxed">
-                        Dashboards de gestão, CRMs internos e sistemas de controle desenvolvidos especificamente para as regras de negócio da sua empresa.
+                    <h4 class="text-2xl font-bold text-white mb-4">Sistemas Admin</h4>
+                    <p class="text-slate-400 leading-relaxed text-lg">
+                        Plataformas SaaS personalizadas para gestão financeira, operacional e logística com dashboards em tempo real.
                     </p>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="bg-brand-dark p-8 rounded-2xl border border-white/5 hover-card">
-                    <div class="w-14 h-14 bg-blue-900/50 rounded-xl flex items-center justify-center text-brand-accent mb-6">
-                        <i data-lucide="workflow" class="w-8 h-8"></i>
+                <div class="glass p-10 rounded-3xl hover-card reveal" style="transition-delay: 200ms">
+                    <div class="w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-400 mb-8">
+                        <i data-lucide="refresh-ccw" class="w-9 h-9"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Integração de Sistemas</h4>
-                    <p class="text-slate-400 leading-relaxed">
-                        Conectamos suas ferramentas atuais (ERP, Planilhas, E-mail) através de APIs seguras para criar um fluxo de trabalho unificado e sem erros.
+                    <h4 class="text-2xl font-bold text-white mb-4">Workflow Sync</h4>
+                    <p class="text-slate-400 leading-relaxed text-lg">
+                        Integração total entre WhatsApp, ERP, Planilhas e e-mail. Tudo conversando no mesmo idioma.
                     </p>
                 </div>
             </div>
@@ -198,212 +236,365 @@
     </section>
 
     <!-- App Showcase Section -->
-    <section id="apps" class="py-24 bg-brand-dark relative border-t border-white/5">
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-brand-accent/5 to-transparent pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-brand-accent font-semibold tracking-wide uppercase text-sm mb-2">Nosso Portfólio</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-white">Aplicativos Exclusivos</h3>
-                <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
-                    Conheça as plataformas desenvolvidas pela LS que estão definindo o novo padrão de eficiência no mercado.
+    <section id="apps" class="py-32 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+                <div>
+                    <h2 class="text-brand-accent font-bold tracking-[0.2em] uppercase text-sm mb-4">Portfolio de Elite</h2>
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-white">Softwares que geram valor</h3>
+                </div>
+                <p class="text-slate-400 max-w-md">
+                    Projetos proprietários e customizados que já estão transformando a realidade de centenas de usuários.
                 </p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                
-                <!-- Featured App: AutoPrime -->
-                <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 md:p-10 border border-orange-500/30 shadow-[0_0_40px_-10px_rgba(255,87,34,0.15)] group hover:scale-[1.02] transition-transform duration-300">
-                    <div class="flex flex-col h-full justify-between">
+            <div class="grid lg:grid-cols-2 gap-10">
+                <!-- Case: AutoPrime -->
+                <div class="group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-b from-[#1a1a1a] to-black border border-white/5 p-1 px-1 reveal">
+                    <div class="bg-black/40 absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="p-8 md:p-12 relative z-10 h-full flex flex-col justify-between">
                         <div>
-                            <!-- Logo AutoPrime (Recriado com base na imagem enviada) -->
-                            <div class="flex items-center gap-3 mb-8">
-                                <div class="w-14 h-14 bg-[#FF4500] rounded-[15px] flex items-center justify-center shadow-lg shadow-orange-900/50 transform rotate-[-5deg] group-hover:rotate-0 transition duration-300">
-                                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <!-- Ícone do pincel/esponja estilizado baseado na imagem -->
-                                        <path d="M19 11V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V11" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                        <path d="M5 11H19V13C19 14.1046 18.1046 15 17 15H7C5.89543 15 5 14.1046 5 13V11Z" fill="white" stroke="white" stroke-width="1"/>
-                                        <path d="M12 15V21" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                        <path d="M9 21H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                    </svg>
+                            <div class="flex items-center gap-4 mb-10">
+                                <div class="w-16 h-16 bg-[#FF4500] rounded-2xl flex items-center justify-center shadow-2xl shadow-orange-600/30 transform group-hover:rotate-12 transition-transform duration-500">
+                                    <i data-lucide="car" class="text-black w-9 h-9"></i>
                                 </div>
-                                <div class="font-black text-3xl md:text-4xl italic tracking-tighter select-none flex items-center">
-                                    <span class="text-white">AUTO</span><span class="text-[#FF4500]">PRIME</span>
+                                <div>
+                                    <div class="font-black text-3xl italic tracking-tighter text-white">
+                                        AUTO<span class="text-[#FF4500]">PRIME</span>
+                                    </div>
+                                    <div class="text-[#FF4500] text-xs font-bold uppercase tracking-widest">Premium Management</div>
                                 </div>
                             </div>
-
-                            <h4 class="text-2xl font-bold text-white mb-4">Gestão Automotiva Inteligente</h4>
-                            <p class="text-slate-400 text-lg leading-relaxed mb-6">
-                                A solução definitiva para centros de estética automotiva e oficinas. O AutoPrime utiliza da melhor performance, gestão de estoque preditiva e CRM integrado.
+                            <h4 class="text-3xl font-bold text-white mb-6">A revolução dos centros automotivos</h4>
+                            <p class="text-slate-400 text-lg leading-relaxed mb-8">
+                                Sistema completo com checklist digital, gestão de insumos por IA e área do cliente interativa. O sistema mais rápido do mercado brasileiro.
                             </p>
-
-                            <ul class="space-y-3 mb-8">
-                                <li class="flex items-center text-slate-300">
-                                    <div class="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center mr-3">
-                                        <i data-lucide="check" class="w-3 h-3 text-orange-500"></i>
-                                    </div>
-                                    Painel de Controle Financeiro
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <div class="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center mr-3">
-                                        <i data-lucide="check" class="w-3 h-3 text-orange-500"></i>
-                                    </div>
-                                    Link de Acompanhamento
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <div class="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center mr-3">
-                                        <i data-lucide="check" class="w-3 h-3 text-orange-500"></i>
-                                    </div>
-                                    Controle de Estoque
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <div class="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center mr-3">
-                                        <i data-lucide="check" class="w-3 h-3 text-orange-500"></i>
-                                    </div>
-                                    Histórico de carros
-                                </li>
-                            </ul>
+                            <div class="flex flex-wrap gap-3 mb-12">
+                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Financeiro</span>
+                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Estoque</span>
+                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">CRM</span>
+                            </div>
                         </div>
-
-                        <a href="https://www.instagram.com/autoprime_app/" target="_blank" class="w-full bg-[#FF4500] hover:bg-[#ff5722] text-white font-bold py-4 rounded-xl transition flex items-center justify-center gap-2 text-center">
-                            Conhecer o Sistema <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        </a>
+                        <button onclick="toggleModal('autoprime-modal')" class="w-full py-5 bg-[#FF4500] text-white font-black rounded-2xl hover:bg-[#ff5722] transition-colors flex items-center justify-center gap-3 text-lg">
+                            SABER MAIS
+                            <i data-lucide="info" class="w-5 h-5"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Secondary Apps -->
-                <div class="grid gap-6">
-                    <div class="bg-brand-light p-8 rounded-2xl border border-white/5 hover-border-brand-accent/30 transition">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-blue-600/20 text-blue-400 rounded-lg flex items-center justify-center">
-                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                <!-- Case: Barber Pro -->
+                <div class="group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-b from-amber-900/20 to-black border border-white/5 p-1 reveal" style="transition-delay: 150ms">
+                    <div class="p-8 md:p-12 relative z-10 h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-4 mb-10">
+                                <div class="w-16 h-16 bg-amber-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-amber-600/30 transform group-hover:-rotate-12 transition-transform duration-500">
+                                    <i data-lucide="scissors" class="text-white w-9 h-9"></i>
+                                </div>
+                                <div>
+                                    <div class="font-black text-3xl tracking-tighter text-white uppercase italic">
+                                        BARBER <span class="text-amber-500">PRO</span>
+                                    </div>
+                                    <div class="text-amber-500 text-xs font-bold uppercase tracking-widest">+50 Barbeiros Utilizando</div>
+                                </div>
                             </div>
-                            <h4 class="text-xl font-bold text-white">LS Admin Suite</h4>
-                        </div>
-                        <p class="text-slate-400 mb-4">
-                            Um hub administrativo centralizado que conecta RH, Financeiro e Operacional em uma única interface intuitiva.
-                        </p>
-                    </div>
-
-                    <div class="bg-brand-light p-8 rounded-2xl border border-white/5 hover-border-brand-accent/30 transition">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-purple-600/20 text-purple-400 rounded-lg flex items-center justify-center">
-                                <i data-lucide="message-square-dashed" class="w-6 h-6"></i>
+                            <h4 class="text-3xl font-bold text-white mb-6">A revolução da barbearia moderna</h4>
+                            <p class="text-slate-400 text-lg leading-relaxed mb-8">
+                                Seus diferenciais são o provador de corte e mais várias funcionalidades, como finanças, loja da barbearia, agendamento e muito mais.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-12">
+                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Provador AI</span>
+                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Agendamento</span>
+                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Loja</span>
+                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Financeiro</span>
                             </div>
-                            <h4 class="text-xl font-bold text-white">ChatBot Flow</h4>
                         </div>
-                        <p class="text-slate-400 mb-4">
-                            Atendimento ao cliente 24/7 com processamento de linguagem natural (NLP) treinado especificamente para o seu nicho.
-                        </p>
+                        <button class="w-full py-5 bg-amber-600 text-white font-black rounded-2xl hover:bg-amber-500 transition-colors flex items-center justify-center gap-3 text-lg">
+                            SOLICITAR ACESSO
+                            <i data-lucide="lock" class="w-5 h-5 text-amber-200"></i>
+                        </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- About Feature Section -->
-    <section id="sobre" class="py-24 bg-brand-dark overflow-hidden">
+    <!-- Why Choose Us Section (From Image) -->
+    <section id="sobre" class="py-32 bg-brand-dark overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="lg:w-1/2 text-center lg:text-left">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Por que escolher a <span class="text-brand-accent">LS</span>?</h2>
-                    <p class="text-slate-400 text-lg mb-6 leading-relaxed">
-                        Não somos apenas desenvolvedores; somos estrategistas de eficiência. A LS nasceu para preencher a lacuna entre a complexidade da Inteligência Artificial e a necessidade prática das empresas modernas.
-                    </p>
-                    <ul class="space-y-4 inline-block text-left">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-accent flex-shrink-0 mt-0.5"></i>
-                            <span class="text-slate-300">Foco total em redução de custos operacionais.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-accent flex-shrink-0 mt-0.5"></i>
-                            <span class="text-slate-300">Interfaces intuitivas que sua equipe vai adorar usar.</span>
-                        </li>
-                    </ul>
+            <div class="max-w-4xl reveal">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">
+                    Por que escolher a <span class="text-brand-accent">LS</span>?
+                </h2>
+                <p class="text-slate-400 text-lg md:text-xl mb-10 leading-relaxed">
+                    Não somos apenas desenvolvedores; somos estrategistas de eficiência. A LS nasceu para preencher a lacuna entre a complexidade da Inteligência Artificial e a necessidade prática das empresas modernas.
+                </p>
+                <ul class="space-y-6">
+                    <li class="flex items-center gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full border-2 border-brand-accent flex items-center justify-center">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i>
+                        </div>
+                        <span class="text-slate-200 text-lg font-medium">Foco total em redução de custos operacionais.</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full border-2 border-brand-accent flex items-center justify-center">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i>
+                        </div>
+                        <span class="text-slate-200 text-lg font-medium">Interfaces intuitivas que sua equipe vai adorar usar.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="processo" class="py-32 bg-brand-light/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-brand-accent font-bold tracking-[0.2em] uppercase text-sm mb-4">Etapas</h2>
+                <h3 class="text-4xl md:text-5xl font-extrabold text-white">Como criamos sua solução</h3>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8 relative">
+                <!-- Line Desktop -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-px bg-white/10 -translate-y-12"></div>
+
+                <div class="relative z-10 text-center reveal">
+                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center text-brand-accent mx-auto mb-6 border-2 border-brand-accent/30 font-bold text-xl">1</div>
+                    <h5 class="text-white font-bold mb-3">Imersão</h5>
+                    <p class="text-slate-500 text-sm">Análise profunda dos seus gargalos operacionais atuais.</p>
                 </div>
-                <div class="lg:w-1/2 flex justify-center">
-                    <!-- Grande Versão do Logotipo LS -->
-                    <div class="relative group">
-                        <div class="absolute -inset-10 bg-brand-accent/20 blur-3xl rounded-full opacity-50 group-hover:opacity-100 transition duration-1000"></div>
-                        <svg width="250" height="250" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="relative">
-                            <path d="M50 5L89.5 27.5V72.5L50 95L10.5 72.5V27.5L50 5Z" fill="#0f172a" stroke="#0ea5e9" stroke-width="2"/>
-                            <path d="M50 25L72 37.5V62.5L50 75L28 62.5V37.5L50 25Z" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M72 50H95M72 40H88M72 60H88" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
-                            <circle cx="50" cy="50" r="10" stroke="#38bdf8" stroke-width="2"/>
-                        </svg>
-                    </div>
+
+                <div class="relative z-10 text-center reveal" style="transition-delay: 100ms">
+                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center text-brand-accent mx-auto mb-6 border-2 border-brand-accent/30 font-bold text-xl">2</div>
+                    <h5 class="text-white font-bold mb-3">Arquitetura</h5>
+                    <p class="text-slate-500 text-sm">Desenho do fluxo de IA e da interface do aplicativo.</p>
+                </div>
+
+                <div class="relative z-10 text-center reveal" style="transition-delay: 200ms">
+                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center text-brand-accent mx-auto mb-6 border-2 border-brand-accent/30 font-bold text-xl">3</div>
+                    <h5 class="text-white font-bold mb-3">Dev Agile</h5>
+                    <p class="text-slate-500 text-sm">Desenvolvimento focado em performance e UX.</p>
+                </div>
+
+                <div class="relative z-10 text-center reveal" style="transition-delay: 300ms">
+                    <div class="w-16 h-16 bg-brand-accent rounded-full flex items-center justify-center text-brand-dark mx-auto mb-6 border-4 border-brand-accent/20 font-bold text-xl">4</div>
+                    <h5 class="text-white font-bold mb-3">Escala</h5>
+                    <p class="text-slate-500 text-sm">Implantação, treinamento e monitoramento contínuo.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA / Contact Section -->
-    <section id="contato" class="py-24 relative">
-        <div class="absolute inset-0 bg-brand-accent/5"></div>
+    <!-- Contact Section -->
+    <section id="contato" class="py-32 relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="bg-brand-light p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-bold text-white mb-4">Pronto para automatizar?</h2>
-                    <p class="text-slate-400">Deixe seus dados e nossa equipe entrará em contato para uma análise gratuita.</p>
+            <div class="glass p-10 md:p-16 rounded-[3rem] border border-white/10 shadow-3xl text-center reveal">
+                <div class="inline-flex p-4 rounded-3xl bg-brand-accent/10 text-brand-accent mb-8">
+                    <i data-lucide="mail-plus" class="w-10 h-10"></i>
                 </div>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Pronto para o próximo nível?</h2>
+                <p class="text-slate-400 text-lg mb-12">Preencha o formulário para uma análise técnica gratuita do seu negócio.</p>
 
-                <form class="space-y-6" onsubmit="handleForm(event)">
+                <form class="grid gap-6 text-left" onsubmit="handleForm(event)">
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium text-slate-400 mb-2">Nome</label>
-                            <input type="text" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition" placeholder="Seu nome" required>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Seu Nome</label>
+                            <input type="text" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Ex: João Silva">
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-slate-400 mb-2">Email</label>
-                            <input type="email" class="w-full bg-brand-dark border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition" placeholder="voce@empresa.com" required>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">E-mail Corporativo</label>
+                            <input type="email" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="joao@empresa.com">
                         </div>
                     </div>
                     
-                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-brand-accent text-white font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] transition">
-                        Enviar Mensagem
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Como podemos ajudar?</label>
+                        <textarea rows="4" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Conte-nos brevemente sobre seu projeto ou desafio..."></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="w-full py-5 bg-white text-brand-dark font-black text-xl rounded-2xl hover:bg-brand-accent transition-all transform hover:-translate-y-1 shadow-2xl shadow-white/5">
+                        ENVIAR MENSAGEM
                     </button>
                 </form>
             </div>
         </div>
     </section>
 
+    <!-- Modal AutoPrime -->
+    <div id="autoprime-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
+        <div class="bg-brand-light border border-white/10 w-full max-w-2xl rounded-[2.5rem] overflow-hidden shadow-2xl transform transition-all">
+            <div class="p-8 md:p-12">
+                <div class="flex justify-between items-start mb-8">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-[#FF4500] rounded-xl flex items-center justify-center shadow-lg shadow-orange-600/20 text-black">
+                            <i data-lucide="car" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-white italic tracking-tighter">AUTO<span class="text-[#FF4500]">PRIME</span></h3>
+                    </div>
+                    <button onclick="toggleModal('autoprime-modal')" class="text-slate-500 hover:text-white transition">
+                        <i data-lucide="x" class="w-8 h-8"></i>
+                    </button>
+                </div>
+                
+                <div class="space-y-6 text-slate-300">
+                    <p class="text-lg leading-relaxed">
+                        O <strong class="text-white">AutoPrime</strong> é a solução definitiva desenvolvida pela LS para centros de estética automotiva, funilaria e pintura que buscam excelência operacional.
+                    </p>
+                    
+                    <div class="bg-white/5 border-l-4 border-[#FF4500] p-6 rounded-r-xl">
+                        <h5 class="text-white font-bold mb-2 flex items-center gap-2">
+                            <i data-lucide="users" class="w-5 h-5 text-[#FF4500]"></i>
+                            Quem utiliza hoje?
+                        </h5>
+                        <p class="text-lg">
+                            O sistema é o pilar operacional da <span class="text-white font-bold italic">PH Funilaria e Pintura</span>, garantindo agilidade no fluxo de trabalho e transparência total para seus clientes.
+                        </p>
+                    </div>
+
+                    <div class="grid gap-4">
+                        <h5 class="text-white font-bold uppercase tracking-widest text-xs">Recursos Principais</h5>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Checklist Digital Avançado</li>
+                            <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Gestão de Insumos e Tintas</li>
+                            <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Dashboard Financeiro Real-time</li>
+                            <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> CRM Automotivo Integrado</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-8 border-t border-white/5">
+                    <a href="#contato" onclick="toggleModal('autoprime-modal')" class="block w-full py-4 bg-[#FF4500] text-white text-center font-bold rounded-xl hover:bg-[#ff5722] transition-colors">
+                        SOLICITAR UMA DEMONSTRAÇÃO DO SISTEMA
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="bg-brand-dark border-t border-white/5 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3">
-                <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 5L89.5 27.5V72.5L50 95L10.5 72.5V27.5L50 5Z" stroke="#38bdf8" stroke-width="4"/>
-                </svg>
-                <span class="text-slate-400 text-sm">© 2024 LS Agent AI. Todos os direitos reservados.</span>
+    <footer class="bg-brand-dark border-t border-white/5 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
+                <div class="max-w-xs">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-brand-accent rounded-lg flex items-center justify-center text-brand-dark font-black">LS</div>
+                        <span class="text-white font-bold text-xl uppercase italic">LS Agent AI</span>
+                    </div>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Líderes em automação inteligente e desenvolvimento administrativo focado em performance e escala.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-12 md:gap-24">
+                    <div>
+                        <h6 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Navegação</h6>
+                        <ul class="space-y-4 text-sm text-slate-500">
+                            <li><a href="#home" class="hover:text-brand-accent transition">Home</a></li>
+                            <li><a href="#servicos" class="hover:text-brand-accent transition">Serviços</a></li>
+                            <li><a href="#apps" class="hover:text-brand-accent transition">Cases</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h6 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Legal</h6>
+                        <ul class="space-y-4 text-sm text-slate-500">
+                            <li><a href="#" class="hover:text-brand-accent transition">Privacidade</a></li>
+                            <li><a href="#" class="hover:text-brand-accent transition">Termos</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h6 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Social</h6>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-brand-accent hover:text-brand-dark transition"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                            <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-brand-accent hover:text-brand-dark transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="flex gap-6">
-                <a href="#" class="text-slate-500 hover:text-brand-accent transition"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                <a href="#" class="text-slate-500 hover:text-brand-accent transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600 font-medium">
+                <p>© 2024 LS AGENT AI - SOLUTIONS & AUTOMATION. CNPJ 00.000.000/0001-00</p>
+                <p>DESIGNED BY LS CREATIVE</p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script>
+        // Inicializa ícones
         lucide.createIcons();
 
+        // Mobile Menu Toggle
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
             menu.classList.toggle('hidden');
+            
+            // Troca ícone entre menu e X
+            if (menu.classList.contains('hidden')) {
+                icon.setAttribute('data-lucide', 'menu');
+            } else {
+                icon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
         }
 
+        // Modal Toggle
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const isHidden = modal.classList.contains('hidden');
+            
+            if (isHidden) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.classList.add('modal-open');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.classList.remove('modal-open');
+            }
+        }
+
+        // Reveal Animation on Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger inicial
+        reveal();
+
+        // Form Submission
         function handleForm(event) {
             event.preventDefault();
-            const btn = event.target.querySelector('button');
-            btn.innerText = 'Enviado!';
-            btn.classList.add('bg-green-600');
+            const btn = document.getElementById('submit-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin mx-auto"></i>';
+            lucide.createIcons();
+            btn.disabled = true;
+            
+            // Simula delay de rede
             setTimeout(() => {
-                btn.innerText = 'Enviar Mensagem';
-                btn.classList.remove('bg-green-600');
-                event.target.reset();
-            }, 3000);
+                btn.innerHTML = 'ENVIADO COM SUCESSO!';
+                btn.classList.remove('bg-white');
+                btn.classList.add('bg-green-500', 'text-white');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.add('bg-white');
+                    btn.classList.remove('bg-green-500', 'text-white');
+                    btn.disabled = false;
+                    event.target.reset();
+                    lucide.createIcons();
+                }, 4000);
+            }, 1500);
         }
     </script>
 </body>
