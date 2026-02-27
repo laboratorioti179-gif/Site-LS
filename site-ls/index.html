@@ -390,30 +390,35 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="glass p-10 md:p-16 rounded-[3rem] border border-white/10 shadow-3xl text-center reveal">
                 <div class="inline-flex p-4 rounded-3xl bg-brand-accent/10 text-brand-accent mb-8">
-                    <i data-lucide="mail-plus" class="w-10 h-10"></i>
+                    <i data-lucide="file-text" class="w-10 h-10"></i>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Pronto para o próximo nível?</h2>
-                <p class="text-slate-400 text-lg mb-12">Preencha o formulário para uma análise técnica gratuita do seu negócio.</p>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Inicie seu Diagnóstico</h2>
+                <p class="text-slate-400 text-lg mb-12">Preencha os campos abaixo para sincronizar com nosso formulário oficial de consultoria.</p>
 
                 <form class="grid gap-6 text-left" onsubmit="handleForm(event)">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="space-y-2">
-                            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Seu Nome</label>
-                            <input type="text" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Ex: João Silva">
+                            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Nome Completo</label>
+                            <input type="text" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Como podemos te chamar?">
                         </div>
                         <div class="space-y-2">
-                            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">E-mail Corporativo</label>
-                            <input type="email" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="joao@empresa.com">
+                            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">WhatsApp de Contato</label>
+                            <input type="tel" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="(00) 00000-0000">
                         </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Nome da Empresa / Segmento</label>
+                        <input type="text" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Sua empresa ou área de atuação">
                     </div>
                     
                     <div class="space-y-2">
-                        <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Como podemos ajudar?</label>
-                        <textarea rows="4" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Conte-nos brevemente sobre seu projeto ou desafio..."></textarea>
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Qual processo você deseja automatizar?</label>
+                        <textarea rows="4" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Descreva brevemente o gargalo operacional que quer eliminar..."></textarea>
                     </div>
 
                     <button type="submit" id="submit-btn" class="w-full py-5 bg-white text-brand-dark font-black text-xl rounded-2xl hover:bg-brand-accent transition-all transform hover:-translate-y-1 shadow-2xl shadow-white/5">
-                        ENVIAR MENSAGEM
+                        CONTINUAR NO FORMULÁRIO
                     </button>
                 </form>
             </div>
@@ -570,31 +575,35 @@
         // Trigger inicial
         reveal();
 
-        // Form Submission
+        // Envio do formulário para o Tally
         function handleForm(event) {
             event.preventDefault();
             const btn = document.getElementById('submit-btn');
             const originalText = btn.innerHTML;
             
+            // Captura os valores dos campos sincronizados com o link dWWZRA
+            const inputs = event.target.querySelectorAll('input');
+            const nome = inputs[0].value;
+            const whatsapp = inputs[1].value;
+            const empresa = inputs[2].value;
+            const processo = event.target.querySelector('textarea').value;
+            
+            // Constrói a URL do Tally com parâmetros pré-preenchidos (se suportado pelo formulário)
+            // Caso contrário, redireciona diretamente para o link oficial
+            const linkTally = `https://tally.so/r/dWWZRA?nome=${encodeURIComponent(nome)}&whatsapp=${encodeURIComponent(whatsapp)}&empresa=${encodeURIComponent(empresa)}&processo=${encodeURIComponent(processo)}`;
+
             btn.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin mx-auto"></i>';
             lucide.createIcons();
             btn.disabled = true;
             
-            // Simula delay de rede
             setTimeout(() => {
-                btn.innerHTML = 'ENVIADO COM SUCESSO!';
+                btn.innerHTML = 'REDIRECIONANDO...';
                 btn.classList.remove('bg-white');
-                btn.classList.add('bg-green-500', 'text-white');
+                btn.classList.add('bg-blue-500', 'text-white');
                 
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.classList.add('bg-white');
-                    btn.classList.remove('bg-green-500', 'text-white');
-                    btn.disabled = false;
-                    event.target.reset();
-                    lucide.createIcons();
-                }, 4000);
-            }, 1500);
+                // Redireciona para o formulário do Tally
+                window.location.href = linkTally;
+            }, 1000);
         }
     </script>
 </body>
