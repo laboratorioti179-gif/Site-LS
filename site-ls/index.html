@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LS Agent AI - Automação de IA & Apps Administrativos</title>
-    <meta name="description" content="LS Soluções - Especialistas em Automação de IA e Desenvolvimento de Aplicativos Administrativos personalizados para empresas.">
+    <title>LS Agent AI - Automação de IA & Sistemas</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,17 +15,16 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#020617',
-                            light: '#0f172a',
-                            accent: '#38bdf8', 
-                            glow: '#0ea5e9',
+                            dark: '#0f1115', // Fundo principal escuro
+                            darker: '#0a0c0f',
+                            light: '#f9fafb', // Fundo claro
+                            accent: '#e6c9a8', // Cor areia/dourada
+                            accentHover: '#d4b38d',
+                            grayText: '#9ca3af'
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -42,566 +40,1030 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         
-        .bg-glow {
-            background: radial-gradient(circle at top center, rgba(56, 189, 248, 0.12) 0%, rgba(2, 6, 23, 0) 60%);
+        .mockup-glass {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
         }
 
-        .glass {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .mockup-light {
+            background: #ffffff;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .autoprime-reveal .phone-slide-left,
+        .autoprime-reveal .phone-slide-right,
+        .autoprime-reveal .text-fade-in {
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        .hover-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .hover-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.25);
-            border-color: rgba(56, 189, 248, 0.4);
-        }
+        .autoprime-reveal .phone-slide-left { transform: translateX(-50px); }
+        .autoprime-reveal .phone-slide-right { transform: translateX(50px); }
+        .autoprime-reveal .text-fade-in { transform: translateY(30px); }
 
-        .text-gradient {
-            background: linear-gradient(135deg, #fff 0%, #38bdf8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Animação simples para itens ao scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-        .reveal.active {
+        .autoprime-reveal.is-visible .phone-slide-left,
+        .autoprime-reveal.is-visible .phone-slide-right,
+        .autoprime-reveal.is-visible .text-fade-in {
             opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Modal styling */
-        .modal-open {
-            overflow: hidden;
+            transform: translate(0);
         }
     </style>
 </head>
-<body class="bg-brand-dark text-slate-300 antialiased overflow-x-hidden">
+<body class="bg-brand-dark text-slate-300 antialiased overflow-x-hidden selection:bg-brand-accent selection:text-brand-dark">
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/seu-numero" target="_blank" class="fixed bottom-6 right-6 z-[60] group">
+    <a href="https://wa.me/seu-numero" target="_blank" class="fixed bottom-6 right-6 z-[60] group hover:scale-110 transition-transform">
         <div class="absolute -inset-2 bg-green-500/20 rounded-full blur group-hover:bg-green-500/40 transition duration-300"></div>
-        <div class="relative bg-green-500 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition hover:scale-110 active:scale-95">
+        <div class="relative bg-green-500 text-white p-4 rounded-full shadow-2xl flex items-center justify-center">
             <i data-lucide="message-circle" class="w-7 h-7"></i>
         </div>
     </a>
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 bg-brand-dark/80 backdrop-blur-xl border-b border-white/5">
+    <nav class="fixed w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/5 transition-all py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo LS -->
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                    <div class="w-10 h-10 bg-gradient-to-br from-brand-accent to-blue-600 rounded-lg flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-blue-500/20 group-hover:rotate-6 transition-transform">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-8 h-8 bg-brand-accent rounded flex items-center justify-center text-brand-dark font-bold text-lg">
                         LS
                     </div>
-                    <span class="text-white font-bold text-xl tracking-tight uppercase">LS <span class="text-brand-accent font-light">Agent AI</span></span>
+                    <span class="text-white font-semibold tracking-wide">AGENT AI</span>
                 </div>
                 
                 <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#home" class="text-white hover:text-brand-accent transition">Home</a>
+                    <a href="#automacao" class="text-brand-grayText hover:text-white transition">Automação com IA</a>
+                    <a href="#sistemas" class="text-brand-grayText hover:text-white transition">Sistemas de gestão</a>
+                    <a href="#sites" class="text-brand-grayText hover:text-white transition">Sites elaborados</a>
+                    <a href="#produtos" class="text-brand-grayText hover:text-white transition">Produtos</a>
+                </div>
+
+                <!-- CTA -->
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-center space-x-8">
-                        <a href="#home" class="text-slate-400 hover:text-white transition font-medium">Início</a>
-                        <a href="#servicos" class="text-slate-400 hover:text-white transition font-medium">Soluções</a>
-                        <a href="#processo" class="text-slate-400 hover:text-white transition font-medium">Processo</a>
-                        <a href="#apps" class="text-slate-400 hover:text-white transition font-medium">Cases</a>
-                        <a href="#contato" class="bg-white text-brand-dark hover:bg-brand-accent hover:text-brand-dark transition px-6 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-white/5">Fale Conosco</a>
-                    </div>
+                    <a href="#contato" class="bg-transparent border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-dark transition px-5 py-2 rounded font-semibold text-sm">
+                        Agendar demonstração
+                    </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button type="button" onclick="toggleMenu()" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition">
-                        <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-white">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
             </div>
         </div>
-
         <!-- Mobile Menu -->
-        <div class="md:hidden hidden glass mx-4 rounded-2xl mt-2 overflow-hidden border border-white/10 shadow-2xl" id="mobile-menu">
-            <div class="px-4 py-6 space-y-4 text-center font-medium">
-                <a href="#home" onclick="toggleMenu()" class="block text-white text-lg">Início</a>
-                <a href="#servicos" onclick="toggleMenu()" class="block text-slate-300 text-lg">Soluções</a>
-                <a href="#processo" onclick="toggleMenu()" class="block text-slate-300 text-lg">Processo</a>
-                <a href="#apps" onclick="toggleMenu()" class="block text-slate-300 text-lg">Portfólio</a>
-                <a href="#contato" onclick="toggleMenu()" class="block bg-brand-accent text-brand-dark py-3 rounded-xl font-bold">Solicitar Proposta</a>
-            </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-white/10 mt-4 px-4 py-4 space-y-4">
+            <a href="#home" class="block text-white">Home</a>
+            <a href="#automacao" class="block text-brand-grayText">Automação com IA</a>
+            <a href="#sistemas" class="block text-brand-grayText">Sistemas de gestão</a>
+            <a href="#sites" class="block text-brand-grayText">Sites elaborados</a>
+            <a href="#produtos" class="block text-brand-grayText">Produtos</a>
+            <a href="#contato" class="block text-brand-accent border border-brand-accent text-center py-2 rounded">Agendar demonstração</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative pt-32 pb-20 lg:pt-52 lg:pb-32 bg-glow min-h-screen flex flex-col justify-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 text-brand-accent text-xs md:text-sm font-bold mb-8 uppercase tracking-widest animate-bounce">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
-                </span>
-                Automação 4.0 Disponível
-            </div>
-            
-            <h1 class="text-4xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter mb-8 leading-[1.1]">
-                O futuro da sua empresa <br class="hidden md:block"/>
-                <span class="text-gradient">é automático.</span>
-            </h1>
-            
-            <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-slate-400 mb-12 leading-relaxed">
-                Desenvolvemos agentes inteligentes e aplicativos de gestão de alto nível para empresas que querem <strong>parar de operar o básico</strong> e começar a escalar o lucro.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row justify-center gap-5">
-                <a href="#contato" class="px-10 py-5 bg-brand-accent text-brand-dark rounded-full font-extrabold text-lg hover:bg-white transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(56,189,248,0.4)] flex items-center justify-center gap-3">
-                    Começar Agora
-                    <i data-lucide="zap" class="w-5 h-5 fill-current"></i>
-                </a>
-                <a href="#apps" class="px-10 py-5 glass text-white rounded-full font-bold text-lg hover:border-brand-accent/50 hover:text-brand-accent transition-all flex items-center justify-center">
-                    Ver Portfólio
-                </a>
-            </div>
-
-            <!-- Trusted By / Stats -->
-            <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-t border-white/5 reveal">
-                <div>
-                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">95%</div>
-                    <div class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-semibold">Processos Automatizados</div>
-                </div>
-                <div>
-                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">+10k</div>
-                    <div class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-semibold">Horas Salvas/Ano</div>
-                </div>
-                <div>
-                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">24/7</div>
-                    <div class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-semibold">Suporte com IA</div>
-                </div>
-                <div>
-                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-2">Zero</div>
-                    <div class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-semibold">Erros Manuais</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="servicos" class="py-32 bg-brand-light/30 relative border-t border-white/5">
+    <!-- 01. HOME -->
+    <section id="home" class="pt-32 pb-20 bg-brand-dark relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20 reveal">
-                <h2 class="text-brand-accent font-bold tracking-[0.2em] uppercase text-sm mb-4">Soluções Atuais</h2>
-                <h3 class="text-4xl md:text-5xl font-extrabold text-white">Nossas frentes de atuação</h3>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="glass p-10 rounded-3xl hover-card reveal">
-                    <div class="w-16 h-16 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent mb-8">
-                        <i data-lucide="cpu" class="w-9 h-9"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-4">Agentes de IA</h4>
-                    <p class="text-slate-400 leading-relaxed text-lg">
-                        Cérebros digitais treinados no seu negócio para realizar vendas, suporte e triagem sem intervenção humana.
-                    </p>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="glass p-10 rounded-3xl hover-card reveal" style="transition-delay: 100ms">
-                    <div class="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-400 mb-8">
-                        <i data-lucide="layers" class="w-9 h-9"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-4">Sistemas Admin</h4>
-                    <p class="text-slate-400 leading-relaxed text-lg">
-                        Plataformas SaaS personalizadas para gestão financeira, operacional e logística com dashboards em tempo real.
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="glass p-10 rounded-3xl hover-card reveal" style="transition-delay: 200ms">
-                    <div class="w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-400 mb-8">
-                        <i data-lucide="refresh-ccw" class="w-9 h-9"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-4">Workflow Sync</h4>
-                    <p class="text-slate-400 leading-relaxed text-lg">
-                        Integração total entre WhatsApp, ERP, Planilhas e e-mail. Tudo conversando no mesmo idioma.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- App Showcase Section -->
-    <section id="apps" class="py-32 bg-brand-dark">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Text Content -->
                 <div>
-                    <h2 class="text-brand-accent font-bold tracking-[0.2em] uppercase text-sm mb-4">Portfolio de Elite</h2>
-                    <h3 class="text-4xl md:text-5xl font-extrabold text-white">Softwares que geram valor</h3>
+                    <p class="text-brand-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Automação Inteligente</p>
+                    <h1 class="text-5xl md:text-6xl font-semibold text-white leading-tight mb-6">
+                        IA que trabalha. <br>
+                        <span class="text-brand-accent">Resultados que <br>transformam.</span>
+                    </h1>
+                    <p class="text-brand-grayText text-lg mb-10 max-w-lg leading-relaxed">
+                        Automatizamos processos, desenvolvemos sistemas de gestão e criamos sites profissionais para impulsionar o crescimento da sua empresa.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-6">
+                        <a href="#contato" class="bg-brand-accent text-brand-dark font-semibold px-6 py-3 rounded hover:bg-brand-accentHover transition">
+                            Agendar demonstração
+                        </a>
+                        <a href="#automacao" class="flex items-center gap-2 text-white hover:text-brand-accent transition">
+                            <i data-lucide="play-circle" class="w-5 h-5"></i>
+                            <span class="text-sm font-medium">Ver como funciona</span>
+                        </a>
+                    </div>
                 </div>
-                <p class="text-slate-400 max-w-md">
-                    Projetos proprietários e customizados que já estão transformando a realidade de centenas de usuários.
-                </p>
-            </div>
 
-            <div class="grid lg:grid-cols-2 gap-10">
-                <!-- Case: AutoPrime -->
-                <div class="group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-b from-[#1a1a1a] to-black border border-white/5 p-1 px-1 reveal">
-                    <div class="bg-black/40 absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="p-8 md:p-12 relative z-10 h-full flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-4 mb-10">
-                                <div class="w-16 h-16 bg-[#FF4500] rounded-2xl flex items-center justify-center shadow-2xl shadow-orange-600/30 transform group-hover:rotate-12 transition-transform duration-500">
-                                    <i data-lucide="car" class="text-black w-9 h-9"></i>
+                <!-- Abstract Dashboard UI -->
+                <div class="relative w-full h-[450px] mockup-glass rounded-2xl p-6 hidden md:flex flex-col">
+                    <!-- Top bar -->
+                    <div class="flex gap-4 mb-6">
+                        <div class="w-12 h-12 bg-brand-accent/20 rounded flex items-center justify-center text-brand-accent font-bold">LS</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center">
+                                <p class="text-white text-sm font-medium">Visão geral do sistema</p>
+                                <span class="text-[10px] bg-brand-accent/20 text-brand-accent px-2 py-1 rounded border border-brand-accent/30 font-semibold uppercase tracking-widest">Ao vivo</span>
+                            </div>
+                            <div class="flex gap-6 mt-4">
+                                <div>
+                                    <p class="text-xs text-brand-grayText">Automações Ativas</p>
+                                    <p class="text-2xl text-white font-semibold" id="dash-home-val1">128</p>
                                 </div>
                                 <div>
-                                    <div class="font-black text-3xl italic tracking-tighter text-white">
-                                        AUTO<span class="text-[#FF4500]">PRIME</span>
-                                    </div>
-                                    <div class="text-[#FF4500] text-xs font-bold uppercase tracking-widest">Premium Management</div>
-                                </div>
-                            </div>
-                            <h4 class="text-3xl font-bold text-white mb-6">A revolução dos centros automotivos</h4>
-                            <p class="text-slate-400 text-lg leading-relaxed mb-8">
-                                Sistema completo com checklist digital, gestão de insumos por IA e área do cliente interativa. O sistema mais rápido do mercado brasileiro.
-                            </p>
-                            <div class="flex flex-wrap gap-3 mb-12">
-                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Financeiro</span>
-                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Estoque</span>
-                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">CRM</span>
-                            </div>
-                        </div>
-                        <button onclick="toggleModal('autoprime-modal')" class="w-full py-5 bg-[#FF4500] text-white font-black rounded-2xl hover:bg-[#ff5722] transition-colors flex items-center justify-center gap-3 text-lg">
-                            SABER MAIS
-                            <i data-lucide="info" class="w-5 h-5"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Case: Barber Pro -->
-                <div class="group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-b from-amber-900/20 to-black border border-white/5 p-1 reveal" style="transition-delay: 150ms">
-                    <div class="p-8 md:p-12 relative z-10 h-full flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-4 mb-10">
-                                <div class="w-16 h-16 bg-amber-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-amber-600/30 transform group-hover:-rotate-12 transition-transform duration-500">
-                                    <i data-lucide="scissors" class="text-white w-9 h-9"></i>
+                                    <p class="text-xs text-brand-grayText">Horas Poupadas</p>
+                                    <p class="text-2xl text-white font-semibold" id="dash-home-val2">1.240h</p>
                                 </div>
                                 <div>
-                                    <div class="font-black text-3xl tracking-tighter text-white uppercase italic">
-                                        BARBER <span class="text-amber-500">PRO</span>
-                                    </div>
-                                    <div class="text-amber-500 text-xs font-bold uppercase tracking-widest">+50 Barbeiros Utilizando</div>
+                                    <p class="text-xs text-brand-grayText">Tarefas Concluídas</p>
+                                    <p class="text-2xl text-white font-semibold" id="dash-home-val3">3.452</p>
                                 </div>
                             </div>
-                            <h4 class="text-3xl font-bold text-white mb-6">A revolução da barbearia moderna</h4>
-                            <p class="text-slate-400 text-lg leading-relaxed mb-8">
-                                Seus diferenciais são o provador de corte e mais várias funcionalidades, como finanças, loja da barbearia, agendamento e muito mais.
-                            </p>
-                            <div class="flex flex-wrap gap-3 mb-12">
-                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Provador AI</span>
-                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Agendamento</span>
-                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Loja</span>
-                                <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300">Financeiro</span>
+                        </div>
+                    </div>
+                    <!-- Chart area -->
+                    <div class="grid grid-cols-3 gap-4 flex-1">
+                        <div class="col-span-2 mockup-glass rounded p-4 flex flex-col justify-end border border-white/5 relative overflow-hidden">
+                            <p class="text-xs text-brand-grayText mb-4 absolute top-4 left-4">Desempenho da IA (Últimos 7 dias)</p>
+                            <div class="flex items-end gap-2 h-32 w-full mt-auto">
+                                <div class="w-full bg-brand-accent/30 rounded-t transition-all duration-1000 dash-home-bar" style="height: 30%"></div>
+                                <div class="w-full bg-brand-accent/50 rounded-t transition-all duration-1000 dash-home-bar" style="height: 60%"></div>
+                                <div class="w-full bg-brand-accent rounded-t transition-all duration-1000 dash-home-bar" style="height: 100%"></div>
+                                <div class="w-full bg-brand-accent/70 rounded-t transition-all duration-1000 dash-home-bar" style="height: 80%"></div>
+                                <div class="w-full bg-brand-accent/40 rounded-t transition-all duration-1000 dash-home-bar" style="height: 50%"></div>
+                                <div class="w-full bg-brand-accent/60 rounded-t transition-all duration-1000 dash-home-bar" style="height: 70%"></div>
+                                <div class="w-full bg-brand-accent/90 rounded-t transition-all duration-1000 dash-home-bar" style="height: 95%"></div>
                             </div>
                         </div>
-                        <button class="w-full py-5 bg-amber-600 text-white font-black rounded-2xl hover:bg-amber-500 transition-colors flex items-center justify-center gap-3 text-lg">
-                            SOLICITAR ACESSO
-                            <i data-lucide="lock" class="w-5 h-5 text-amber-200"></i>
-                        </button>
+                        <div class="col-span-1 flex flex-col gap-4">
+                            <div class="mockup-glass rounded p-4 flex-1 flex flex-col items-center justify-center border border-white/5 relative">
+                                <p class="text-[10px] text-brand-grayText absolute top-3 left-3">Taxa de Sucesso</p>
+                                <div class="relative w-20 h-20 mt-3">
+                                    <svg class="w-full h-full transform -rotate-90">
+                                        <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="8" fill="transparent" class="text-white/5" />
+                                        <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="8" fill="transparent" stroke-dasharray="226" stroke-dashoffset="20" class="text-brand-accent transition-all duration-1000" id="dash-home-circle" />
+                                    </svg>
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <span class="text-sm text-white font-bold" id="dash-home-perc">92%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mockup-glass rounded p-3 flex-1 flex flex-col justify-center border border-white/5">
+                                <p class="text-[10px] text-brand-grayText mb-2">Última ação</p>
+                                <div class="flex items-center gap-2 bg-white/5 p-2 rounded">
+                                    <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                                    <p class="text-[11px] text-white truncate">Sincronização ERP concluída</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 pt-10 border-t border-white/5">
+                <div class="flex gap-4">
+                    <i data-lucide="zap" class="w-6 h-6 text-brand-accent flex-shrink-0"></i>
+                    <div>
+                        <h4 class="text-white text-sm font-semibold">Mais produtividade</h4>
+                        <p class="text-brand-grayText text-xs mt-1">menos retrabalho</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <i data-lucide="trending-down" class="w-6 h-6 text-brand-accent flex-shrink-0"></i>
+                    <div>
+                        <h4 class="text-white text-sm font-semibold">Redução de custos</h4>
+                        <p class="text-brand-grayText text-xs mt-1">e desperdícios</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <i data-lucide="bar-chart-2" class="w-6 h-6 text-brand-accent flex-shrink-0"></i>
+                    <div>
+                        <h4 class="text-white text-sm font-semibold">Decisões baseadas</h4>
+                        <p class="text-brand-grayText text-xs mt-1">em dados</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <i data-lucide="layers" class="w-6 h-6 text-brand-accent flex-shrink-0"></i>
+                    <div>
+                        <h4 class="text-white text-sm font-semibold">Escalabilidade</h4>
+                        <p class="text-brand-grayText text-xs mt-1">para crescer</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logos -->
+            <div class="mt-20">
+                <p class="text-xs text-brand-grayText uppercase tracking-widest font-semibold mb-6">Empresas que confiam na LS Agent AI</p>
+                <div class="flex flex-wrap items-center gap-8 md:gap-12 opacity-50">
+                    <div class="flex items-center gap-2 text-white font-bold text-lg"><i data-lucide="triangle" class="w-5 h-5 fill-current"></i> GRUPO PRIME</div>
+                    <div class="flex items-center gap-2 text-white font-bold text-lg"><i data-lucide="hexagon" class="w-5 h-5"></i> INOVATECH</div>
+                    <div class="flex items-center gap-2 text-white font-bold text-lg">MAXXION</div>
+                    <div class="flex items-center gap-2 text-white font-bold text-lg"><i data-lucide="globe" class="w-5 h-5"></i> CONECTA</div>
+                    <div class="flex items-center gap-2 text-white font-bold text-lg">RIBEIRO</div>
+                    <div class="flex items-center gap-2 text-white font-bold text-lg"><i data-lucide="circle" class="w-5 h-5"></i> EVOLUA</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us Section (From Image) -->
-    <section id="sobre" class="py-32 bg-brand-dark overflow-hidden">
+    <!-- 02. AUTOMAÇÃO DE PROCESSOS COM IA -->
+    <section id="automacao" class="py-24 bg-brand-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl reveal">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">
-                    Por que escolher a <span class="text-brand-accent">LS</span>?
-                </h2>
-                <p class="text-slate-400 text-lg md:text-xl mb-10 leading-relaxed">
-                    Não somos apenas desenvolvedores; somos estrategistas de eficiência. A LS nasceu para preencher a lacuna entre a complexidade da Inteligência Artificial e a necessidade prática das empresas modernas.
-                </p>
-                <ul class="space-y-6">
-                    <li class="flex items-center gap-4">
-                        <div class="flex-shrink-0 w-8 h-8 rounded-full border-2 border-brand-accent flex items-center justify-center">
-                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i>
-                        </div>
-                        <span class="text-slate-200 text-lg font-medium">Foco total em redução de custos operacionais.</span>
-                    </li>
-                    <li class="flex items-center gap-4">
-                        <div class="flex-shrink-0 w-8 h-8 rounded-full border-2 border-brand-accent flex items-center justify-center">
-                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i>
-                        </div>
-                        <span class="text-slate-200 text-lg font-medium">Interfaces intuitivas que sua equipe vai adorar usar.</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section id="processo" class="py-32 bg-brand-light/20 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20 reveal">
-                <h2 class="text-brand-accent font-bold tracking-[0.2em] uppercase text-sm mb-4">Etapas</h2>
-                <h3 class="text-4xl md:text-5xl font-extrabold text-white">Como criamos sua solução</h3>
-            </div>
-
-            <div class="grid md:grid-cols-4 gap-8 relative">
-                <!-- Line Desktop -->
-                <div class="hidden md:block absolute top-1/2 left-0 w-full h-px bg-white/10 -translate-y-12"></div>
-
-                <div class="relative z-10 text-center reveal">
-                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center text-brand-accent mx-auto mb-6 border-2 border-brand-accent/30 font-bold text-xl">1</div>
-                    <h5 class="text-white font-bold mb-3">Imersão</h5>
-                    <p class="text-slate-500 text-sm">Análise profunda dos seus gargalos operacionais atuais.</p>
-                </div>
-
-                <div class="relative z-10 text-center reveal" style="transition-delay: 100ms">
-                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center text-brand-accent mx-auto mb-6 border-2 border-brand-accent/30 font-bold text-xl">2</div>
-                    <h5 class="text-white font-bold mb-3">Arquitetura</h5>
-                    <p class="text-slate-500 text-sm">Desenho do fluxo de IA e da interface do aplicativo.</p>
-                </div>
-
-                <div class="relative z-10 text-center reveal" style="transition-delay: 200ms">
-                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center text-brand-accent mx-auto mb-6 border-2 border-brand-accent/30 font-bold text-xl">3</div>
-                    <h5 class="text-white font-bold mb-3">Dev Agile</h5>
-                    <p class="text-slate-500 text-sm">Desenvolvimento focado em performance e UX.</p>
-                </div>
-
-                <div class="relative z-10 text-center reveal" style="transition-delay: 300ms">
-                    <div class="w-16 h-16 bg-brand-accent rounded-full flex items-center justify-center text-brand-dark mx-auto mb-6 border-4 border-brand-accent/20 font-bold text-xl">4</div>
-                    <h5 class="text-white font-bold mb-3">Escala</h5>
-                    <p class="text-slate-500 text-sm">Implantação, treinamento e monitoramento contínuo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contato" class="py-32 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="glass p-10 md:p-16 rounded-[3rem] border border-white/10 shadow-3xl text-center reveal">
-                <div class="inline-flex p-4 rounded-3xl bg-brand-accent/10 text-brand-accent mb-8">
-                    <i data-lucide="file-text" class="w-10 h-10"></i>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Inicie seu Diagnóstico</h2>
-                <p class="text-slate-400 text-lg mb-12">Preencha os campos abaixo para sincronizar com nosso formulário oficial de consultoria.</p>
-
-                <form class="grid gap-6 text-left" onsubmit="handleForm(event)">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Nome Completo</label>
-                            <input type="text" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Como podemos te chamar?">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">WhatsApp de Contato</label>
-                            <input type="tel" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="(00) 00000-0000">
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Nome da Empresa / Segmento</label>
-                        <input type="text" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Sua empresa ou área de atuação">
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Qual processo você deseja automatizar?</label>
-                        <textarea rows="4" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-brand-accent transition-all" placeholder="Descreva brevemente o gargalo operacional que quer eliminar..."></textarea>
-                    </div>
-
-                    <button type="submit" id="submit-btn" class="w-full py-5 bg-white text-brand-dark font-black text-xl rounded-2xl hover:bg-brand-accent transition-all transform hover:-translate-y-1 shadow-2xl shadow-white/5">
-                        CONTINUAR NO FORMULÁRIO
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal AutoPrime -->
-    <div id="autoprime-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
-        <div class="bg-brand-light border border-white/10 w-full max-w-2xl rounded-[2.5rem] overflow-hidden shadow-2xl transform transition-all">
-            <div class="p-8 md:p-12">
-                <div class="flex justify-between items-start mb-8">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-[#FF4500] rounded-xl flex items-center justify-center shadow-lg shadow-orange-600/20 text-black">
-                            <i data-lucide="car" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-3xl font-black text-white italic tracking-tighter">AUTO<span class="text-[#FF4500]">PRIME</span></h3>
-                    </div>
-                    <button onclick="toggleModal('autoprime-modal')" class="text-slate-500 hover:text-white transition">
-                        <i data-lucide="x" class="w-8 h-8"></i>
-                    </button>
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                <div>
+                    <p class="text-gray-500 text-xs font-bold tracking-[0.2em] uppercase mb-4">Automação Inteligente</p>
+                    <h2 class="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight mb-6">
+                        Processos automáticos.<br>
+                        <span class="text-brand-accent">Mais eficiência</span> para<br>
+                        o que realmente importa.
+                    </h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed max-w-md">
+                        Agentes de IA que executam tarefas, tomam decisões e se integram aos seus sistemas para eliminar retrabalho e acelerar resultados.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Atendimento e suporte 24/7 com IA
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Integração com sistemas e ferramentas
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Fluxos inteligentes e personalizados
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Relatórios e indicadores em tempo real
+                        </li>
+                    </ul>
                 </div>
                 
-                <div class="space-y-6 text-slate-300">
-                    <p class="text-lg leading-relaxed">
-                        O <strong class="text-white">AutoPrime</strong> é a solução definitiva desenvolvida pela LS para centros de estética automotiva, funilaria e pintura que buscam excelência operacional.
+                <!-- Automation UI Graphic -->
+                <div class="relative w-full h-[400px] mockup-light rounded-2xl p-8 hidden md:flex items-center justify-center">
+                    <div class="flex gap-8 items-center w-full">
+                        <div class="flex flex-col gap-6">
+                            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center shadow"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center shadow"><i data-lucide="mail" class="w-5 h-5"></i></div>
+                            <div class="w-12 h-12 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center shadow"><i data-lucide="globe" class="w-5 h-5"></i></div>
+                            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center shadow"><i data-lucide="message-square" class="w-5 h-5"></i></div>
+                        </div>
+                        <div class="flex-1 space-y-4">
+                            <div class="bg-gray-50 border border-gray-100 p-3 rounded text-xs text-gray-500 flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i> Novo atendimento</div>
+                            <div class="bg-gray-50 border border-gray-100 p-3 rounded text-xs text-gray-500 flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-brand-accent"></i> Olá! Como posso ajudar?</div>
+                            <div class="bg-gray-50 border border-gray-100 p-3 rounded text-xs text-gray-500 flex items-center gap-2"><i data-lucide="search" class="w-4 h-4 text-brand-accent"></i> Analisando solicitação...</div>
+                            <div class="bg-gray-50 border border-gray-100 p-3 rounded text-xs text-gray-500 flex items-center gap-2"><i data-lucide="database" class="w-4 h-4 text-brand-accent"></i> Buscando informações...</div>
+                            <div class="bg-brand-accent/10 border border-brand-accent/30 p-3 rounded text-xs text-brand-dark font-medium flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-accent"></i> Solução encontrada!</div>
+                            <div class="bg-gray-50 border border-gray-100 p-3 rounded text-xs text-gray-500 flex items-center gap-2"><i data-lucide="corner-down-right" class="w-4 h-4"></i> Atendimento concluído</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplos -->
+            <h4 class="text-sm font-semibold text-gray-900 mb-6">Exemplos de automações</h4>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <i data-lucide="users" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-gray-900 font-semibold mb-2">Atendimento</h5>
+                    <p class="text-gray-500 text-sm">Respostas automáticas e qualificadas com IA</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <i data-lucide="dollar-sign" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-gray-900 font-semibold mb-2">Financeiro</h5>
+                    <p class="text-gray-500 text-sm">Emissão de boletos, conciliação e cobranças</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <i data-lucide="briefcase" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-gray-900 font-semibold mb-2">Comercial</h5>
+                    <p class="text-gray-500 text-sm">Follow-up automático e gestão de leads</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <i data-lucide="settings" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-gray-900 font-semibold mb-2">Operações</h5>
+                    <p class="text-gray-500 text-sm">Processos internos sem intervenção manual</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03. APLICATIVOS / SISTEMAS DE GESTÃO -->
+    <section id="sistemas" class="py-24 bg-brand-darker border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                <div>
+                    <p class="text-brand-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Gestão Inteligente</p>
+                    <h2 class="text-4xl md:text-5xl font-semibold text-white leading-tight mb-6">
+                        Sistemas de gestão completos para <span class="text-brand-accent">organizar e escalar</span> seu negócio.
+                    </h2>
+                    <p class="text-brand-grayText mb-8 leading-relaxed max-w-md">
+                        Desenvolvemos aplicativos e sistemas sob medida para centralizar informações, integrar áreas e dar mais controle para sua empresa.
                     </p>
-                    
-                    <div class="bg-white/5 border-l-4 border-[#FF4500] p-6 rounded-r-xl">
-                        <h5 class="text-white font-bold mb-2 flex items-center gap-2">
-                            <i data-lucide="users" class="w-5 h-5 text-[#FF4500]"></i>
-                            Quem utiliza hoje?
-                        </h5>
-                        <p class="text-lg">
-                            O sistema é o pilar operacional da <span class="text-white font-bold italic">PH Funilaria e Pintura</span>, garantindo agilidade no fluxo de trabalho e transparência total para seus clientes.
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-gray-300 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Soluções personalizadas para seu modelo de negócio
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Dashboards intuitivos e indicadores em tempo real
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Segurança, performance e escalabilidade
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Acesso de qualquer lugar, em qualquer dispositivo
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Dashboard UI Graphic -->
+                <div class="relative w-full h-[400px] mockup-glass rounded-2xl p-6 hidden md:flex gap-6">
+                    <!-- Sidebar -->
+                    <div class="w-32 border-r border-white/5 space-y-4 pt-4">
+                        <div class="w-6 h-6 bg-brand-accent rounded mb-8"></div>
+                        <div class="flex items-center gap-2 text-xs text-white"><i data-lucide="layout-dashboard" class="w-4 h-4 text-brand-accent"></i> Dashboard</div>
+                        <div class="flex items-center gap-2 text-xs text-brand-grayText"><i data-lucide="users" class="w-4 h-4"></i> Clientes</div>
+                        <div class="flex items-center gap-2 text-xs text-brand-grayText"><i data-lucide="shopping-bag" class="w-4 h-4"></i> Vendas</div>
+                        <div class="flex items-center gap-2 text-xs text-brand-grayText"><i data-lucide="dollar-sign" class="w-4 h-4"></i> Financeiro</div>
+                        <div class="flex items-center gap-2 text-xs text-brand-grayText"><i data-lucide="settings" class="w-4 h-4"></i> Ajustes</div>
+                    </div>
+                    <!-- Main content -->
+                    <div class="flex-1 pt-4 space-y-6 flex flex-col">
+                        <div class="flex justify-between items-center">
+                            <h5 class="text-white font-medium">Visão Geral</h5>
+                            <span class="text-[10px] text-brand-grayText border border-white/10 px-2 py-1 rounded">Últimos 30 dias</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="bg-white/5 p-3 rounded flex-1 border border-white/5 hover:border-brand-accent/30 transition-colors">
+                                <p class="text-[10px] text-brand-grayText mb-1 flex items-center justify-between">Faturamento <i data-lucide="trending-up" class="w-3 h-3 text-green-400"></i></p>
+                                <p class="text-lg text-white font-medium" id="dash-sys-val1">R$ 278.430</p>
+                            </div>
+                            <div class="bg-white/5 p-3 rounded flex-1 border border-white/5 hover:border-brand-accent/30 transition-colors">
+                                <p class="text-[10px] text-brand-grayText mb-1 flex items-center justify-between">Novos clientes <i data-lucide="users" class="w-3 h-3 text-brand-accent"></i></p>
+                                <p class="text-lg text-white font-medium" id="dash-sys-val2">126</p>
+                            </div>
+                            <div class="bg-white/5 p-3 rounded flex-1 border border-white/5 hover:border-brand-accent/30 transition-colors">
+                                <p class="text-[10px] text-brand-grayText mb-1 flex items-center justify-between">Pedidos <i data-lucide="shopping-cart" class="w-3 h-3 text-brand-accent"></i></p>
+                                <p class="text-lg text-white font-medium" id="dash-sys-val3">342</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 flex-1 min-h-[120px]">
+                            <div class="bg-white/5 p-3 rounded flex-[2] flex flex-col justify-between gap-1 border border-white/5 relative overflow-hidden">
+                                <p class="text-[10px] text-brand-grayText z-10 relative">Crescimento de Receita</p>
+                                <!-- Fake Line Chart -->
+                                <svg viewBox="0 0 100 30" class="w-full h-20 stroke-brand-accent fill-none overflow-visible absolute bottom-0 left-0 right-0 p-2" stroke-width="2" preserveAspectRatio="none">
+                                    <polyline id="dash-sys-line" points="0,25 20,15 40,20 60,5 80,10 100,2" class="transition-all duration-1000" />
+                                </svg>
+                            </div>
+                            <div class="bg-white/5 p-3 rounded flex-1 flex flex-col items-center justify-center border border-white/5">
+                                <p class="text-[10px] text-brand-grayText mb-3 w-full text-center">Conversão</p>
+                                <div class="w-14 h-14 rounded-full border-[5px] border-brand-accent/10 border-r-brand-accent border-t-brand-accent animate-[spin_8s_linear_infinite]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modulos -->
+            <h4 class="text-sm font-semibold text-white mb-6">Módulos que desenvolvemos</h4>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="mockup-glass p-6 rounded-xl border border-white/5">
+                    <i data-lucide="users" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-white font-semibold mb-2">Vendas e CRM</h5>
+                    <p class="text-brand-grayText text-sm">Gestão de clientes, oportunidades e funil</p>
+                </div>
+                <div class="mockup-glass p-6 rounded-xl border border-white/5">
+                    <i data-lucide="book-open" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-white font-semibold mb-2">Financeiro</h5>
+                    <p class="text-brand-grayText text-sm">Contas a pagar/receber, fluxo de caixa e conciliação</p>
+                </div>
+                <div class="mockup-glass p-6 rounded-xl border border-white/5">
+                    <i data-lucide="package" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-white font-semibold mb-2">Estoque</h5>
+                    <p class="text-brand-grayText text-sm">Controle de produtos, estoque e inventário</p>
+                </div>
+                <div class="mockup-glass p-6 rounded-xl border border-white/5">
+                    <i data-lucide="bar-chart-2" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-white font-semibold mb-2">Relatórios</h5>
+                    <p class="text-brand-grayText text-sm">Indicadores estratégicos para decisões assertivas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 04. SITES ELABORADOS -->
+    <section id="sites" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                <div>
+                    <p class="text-gray-500 text-xs font-bold tracking-[0.2em] uppercase mb-4">Presença que gera resultados</p>
+                    <h2 class="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight mb-6">
+                        Sites profissionais que <span class="text-brand-accent">fortalecem sua marca</span> e geram oportunidades.
+                    </h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed max-w-md">
+                        Desenvolvemos sites modernos, rápidos e otimizados para proporcionar a melhor experiência para seus visitantes e converter mais negócios.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Design moderno e responsivo
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Otimização para SEO
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Sites rápidos e seguros
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-accent"></i> Integração com WhatsApp e redes sociais
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Mobile Mockup Graphic -->
+                <div class="relative w-full flex justify-center hidden md:flex">
+                    <div class="w-[280px] h-[550px] bg-brand-dark rounded-[2.5rem] p-3 border-[6px] border-gray-800 shadow-2xl relative">
+                        <div class="w-32 h-6 bg-gray-800 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl"></div>
+                        <div class="w-full h-full bg-brand-darker rounded-[2rem] overflow-hidden flex flex-col">
+                            <div class="p-6 pt-12 flex-1">
+                                <p class="text-[10px] text-white uppercase tracking-widest mb-4">Sua Marca</p>
+                                <h3 class="text-white text-2xl font-semibold mb-4 leading-tight">Soluções que impulsionam seu negócio</h3>
+                                <div class="w-24 h-8 bg-brand-accent rounded text-[8px] flex items-center justify-center font-bold">Fale com um especialista</div>
+                                
+                                <div class="mt-10 grid grid-cols-2 gap-3">
+                                    <div class="bg-white/5 h-20 rounded p-2 flex items-end"><div class="w-1/2 h-2 bg-brand-accent/50 rounded"></div></div>
+                                    <div class="bg-white/5 h-20 rounded p-2 flex items-end"><div class="w-3/4 h-2 bg-brand-accent rounded"></div></div>
+                                </div>
+                            </div>
+                            <div class="h-40 bg-brand-accent/10 rounded-t-3xl p-6 relative">
+                                <div class="absolute -top-6 right-6 w-32 bg-white rounded p-3 shadow-lg">
+                                    <p class="text-brand-dark text-[10px] font-bold leading-tight">Soluções que impulsionam seu negócio</p>
+                                    <div class="w-16 h-4 bg-brand-dark rounded mt-2 text-[6px] text-white flex items-center justify-center">Fale com um especialista</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tipos -->
+            <h4 class="text-sm font-semibold text-gray-900 mb-6">Tipos de sites que criamos</h4>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <i data-lucide="layout" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-gray-900 font-semibold mb-2">Institucionais</h5>
+                    <p class="text-gray-500 text-sm">Apresente sua empresa com profissionalismo</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <i data-lucide="mouse-pointer" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-gray-900 font-semibold mb-2">Landing Pages</h5>
+                    <p class="text-gray-500 text-sm">Converta visitantes em clientes</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <i data-lucide="shopping-cart" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-gray-900 font-semibold mb-2">E-commerce</h5>
+                    <p class="text-gray-500 text-sm">Venda seus produtos com segurança</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <i data-lucide="globe" class="w-6 h-6 text-brand-accent mb-4"></i>
+                    <h5 class="text-gray-900 font-semibold mb-2">Portais</h5>
+                    <p class="text-gray-500 text-sm">Sistemas web e áreas exclusivas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section id="produtos" class="py-24 bg-brand-darker border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16">
+                <p class="text-brand-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Nossos Produtos</p>
+                <h2 class="text-4xl md:text-5xl font-semibold text-white leading-tight mb-6">
+                    Soluções próprias <span class="text-brand-accent">prontas para uso.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Produto 1: ClickBeach -->
+                <div class="mockup-glass p-8 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-colors">
+                    <i data-lucide="sun" class="w-8 h-8 text-brand-accent mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-4">ClickBeach</h3>
+                    <p class="text-brand-grayText leading-relaxed mb-6">
+                        Sistema especializado com interface intuitiva para automatizar e otimizar processos comerciais específicos do seu setor.
+                    </p>
+                    <button onclick="toggleClickBeachModal()" class="text-brand-accent font-semibold text-sm hover:text-white transition flex items-center gap-2 cursor-pointer">
+                        Saiba mais <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Produto 2: Autoprime -->
+                <div class="mockup-glass p-8 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-colors">
+                    <i data-lucide="car" class="w-8 h-8 text-brand-accent mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-4">Autoprime</h3>
+                    <p class="text-brand-grayText leading-relaxed mb-6">
+                        Gestão completa desenvolvida para centros de estética automotiva, integrando checklist, estoque e financeiro.
+                    </p>
+                    <button onclick="toggleAutoprimeModal()" class="text-brand-accent font-semibold text-sm hover:text-white transition flex items-center gap-2 cursor-pointer">
+                        Saiba mais <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05. SOBRE A LS AGENT AI -->
+    <section id="sobre" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-16">
+                <div>
+                    <p class="text-brand-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Quem somos</p>
+                    <h2 class="text-4xl md:text-4xl font-semibold text-white leading-tight mb-6">
+                        Tecnologia, estratégia<br> e inteligência para<br> transformar negócios.
+                    </h2>
+                    <div class="space-y-4 text-brand-grayText leading-relaxed">
+                        <p>
+                            A LS Agent AI nasceu para ajudar empresas a alcançarem mais eficiência, reduzirem custos e tomarem melhores decisões com o poder da automação e da inteligência artificial.
+                        </p>
+                        <p>
+                            Unimos experiência, inovação e compromisso para entregar soluções que geram resultados reais e sustentáveis.
                         </p>
                     </div>
+                </div>
+                
+                <!-- Office Placeholder Image -->
+                <div class="relative w-full h-[300px] rounded-2xl overflow-hidden hidden md:block">
+                    <!-- Gradient fallback simulating a dark office -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-black"></div>
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-white rounded flex items-center justify-center text-brand-dark font-bold text-xl">LS</div>
+                            <span class="text-white font-semibold tracking-wide text-2xl">AGENT AI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="grid gap-4">
-                        <h5 class="text-white font-bold uppercase tracking-widest text-xs">Recursos Principais</h5>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Checklist Digital Avançado</li>
-                            <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Gestão de Insumos e Tintas</li>
-                            <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Dashboard Financeiro Real-time</li>
-                            <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> CRM Automotivo Integrado</li>
-                        </ul>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-y border-white/10 mb-16">
+                <div class="text-center md:text-left">
+                    <p class="text-4xl font-semibold text-white mb-1">+200</p>
+                    <p class="text-brand-grayText text-xs font-medium">Empresas atendidas</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <p class="text-4xl font-semibold text-white mb-1">+1.5M</p>
+                    <p class="text-brand-grayText text-xs font-medium">Processos automatizados</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <p class="text-4xl font-semibold text-white mb-1">+35K</p>
+                    <p class="text-brand-grayText text-xs font-medium">Horas economizadas</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <p class="text-4xl font-semibold text-white mb-1">98%</p>
+                    <p class="text-brand-grayText text-xs font-medium">Satisfação dos clientes</p>
+                </div>
+            </div>
+
+            <!-- Valores -->
+            <h4 class="text-sm font-semibold text-white mb-6">Nossos valores</h4>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <i data-lucide="lightbulb" class="w-6 h-6 text-brand-accent mb-3"></i>
+                    <h5 class="text-white font-semibold mb-2">Inovação</h5>
+                    <p class="text-brand-grayText text-xs">Buscamos o novo para gerar impacto real.</p>
+                </div>
+                <div>
+                    <i data-lucide="shield" class="w-6 h-6 text-brand-accent mb-3"></i>
+                    <h5 class="text-white font-semibold mb-2">Compromisso</h5>
+                    <p class="text-brand-grayText text-xs">Somos parceiros no sucesso do cliente.</p>
+                </div>
+                <div>
+                    <i data-lucide="eye" class="w-6 h-6 text-brand-accent mb-3"></i>
+                    <h5 class="text-white font-semibold mb-2">Transparência</h5>
+                    <p class="text-brand-grayText text-xs">Confiança em cada relacionamento.</p>
+                </div>
+                <div>
+                    <i data-lucide="award" class="w-6 h-6 text-brand-accent mb-3"></i>
+                    <h5 class="text-white font-semibold mb-2">Excelência</h5>
+                    <p class="text-brand-grayText text-xs">Qualidade em tudo que entregamos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06. CONTATO -->
+    <section id="contato" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div>
+                    <p class="text-gray-500 text-xs font-bold tracking-[0.2em] uppercase mb-4">Vamos conversar?</p>
+                    <h2 class="text-4xl md:text-4xl font-semibold text-gray-900 leading-tight mb-6">
+                        Pronto para transformar<br> sua empresa com <span class="text-brand-accent">IA?</span>
+                    </h2>
+                    <p class="text-gray-600 mb-10 leading-relaxed max-w-sm">
+                        Fale com um especialista e descubra como podemos automatizar processos, criar sistemas de gestão e desenvolver sites que geram resultados.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="phone" class="w-5 h-5 text-brand-accent mt-1"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-900">WhatsApp</p>
+                                <p class="text-sm text-gray-500">(11) 99999-9999</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="mail" class="w-5 h-5 text-brand-accent mt-1"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-900">E-mail</p>
+                                <p class="text-sm text-gray-500">contato@lsagentai.com.br</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="clock" class="w-5 h-5 text-brand-accent mt-1"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-900">Horário de atendimento</p>
+                                <p class="text-sm text-gray-500">Segunda a Sexta, das 8h às 18h</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand-accent mt-1"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-900">Localização</p>
+                                <p class="text-sm text-gray-500">Atendemos todo o Brasil</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mt-10 pt-8 border-t border-white/5">
-                    <a href="https://www.instagram.com/autoprime_app/" target="_blank" class="block w-full py-4 bg-[#FF4500] text-white text-center font-bold rounded-xl hover:bg-[#ff5722] transition-colors uppercase">
-                        CONHEÇA O APLICATIVO
-                    </a>
+                <!-- Form Card -->
+                <div class="bg-white p-8 md:p-10 rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Envie sua mensagem</h3>
+                    <form class="space-y-5" onsubmit="handleForm(event)">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 mb-2">Nome</label>
+                            <input type="text" required class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="Seu nome">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 mb-2">E-mail</label>
+                            <input type="email" required class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="seu@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 mb-2">Telefone</label>
+                            <input type="tel" required class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="(11) 00000-0000">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 mb-2">Mensagem</label>
+                            <textarea rows="4" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition" placeholder="Como podemos ajudar sua empresa?"></textarea>
+                        </div>
+                        <button type="submit" id="submit-btn" class="w-full py-4 mt-2 bg-brand-dark text-white font-semibold text-sm rounded hover:bg-black transition-colors">
+                            Enviar mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-darker border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 items-start">
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-brand-accent rounded flex items-center justify-center text-brand-dark font-bold text-lg">LS</div>
+                        <span class="text-white font-semibold tracking-wide">AGENT AI</span>
+                    </div>
+                    <p class="text-brand-grayText text-xs leading-relaxed max-w-xs">
+                        Automação de processos com IA, sistemas de gestão e sites profissionais para impulsionar o seu negócio.
+                    </p>
+                </div>
+                
+                <div>
+                    <h6 class="text-white font-semibold mb-4 text-xs tracking-widest">Navegação</h6>
+                    <ul class="space-y-3 text-xs text-brand-grayText">
+                        <li><a href="#home" class="hover:text-brand-accent transition">Home</a></li>
+                        <li><a href="#automacao" class="hover:text-brand-accent transition">Automação com IA</a></li>
+                        <li><a href="#sistemas" class="hover:text-brand-accent transition">Sistemas de gestão</a></li>
+                        <li><a href="#sites" class="hover:text-brand-accent transition">Sites elaborados</a></li>
+                        <li><a href="#produtos" class="hover:text-brand-accent transition">Produtos</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6 class="text-white font-semibold mb-4 text-xs tracking-widest">Siga-nos</h6>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-brand-grayText hover:text-white transition"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-brand-grayText hover:text-white transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-brand-grayText hover:text-white transition"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-white/5 text-[10px] text-brand-grayText">
+                <p>© 2024 LS Agent AI. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Autoprime -->
+    <div id="autoprime-modal" class="fixed inset-0 z-[100] hidden bg-brand-dark/95 backdrop-blur-md overflow-y-auto">
+        <div class="min-h-screen py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative">
+            <button onclick="toggleAutoprimeModal()" class="absolute top-8 right-8 text-brand-grayText hover:text-white transition bg-white/5 p-3 rounded-full hover:bg-white/10">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-28 autoprime-reveal pt-10">
+                <h2 class="text-4xl md:text-5xl font-semibold text-white mb-6">Conheça o Autoprime</h2>
+                <p class="text-brand-grayText text-lg max-w-2xl mx-auto">Explore as funcionalidades da nossa plataforma através de uma interface móvel fluida, pensada na eficiência operacional do dia a dia.</p>
+            </div>
+
+            <div class="space-y-32 pb-20">
+                <!-- Tela 1: Esquerda -->
+                <div class="flex flex-col md:flex-row items-center gap-12 autoprime-reveal">
+                    <div class="w-full md:w-1/2 flex justify-center phone-slide-left">
+                        <div class="w-[280px] h-[580px] bg-brand-darker rounded-[2.5rem] p-2 border-[6px] border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative flex-shrink-0">
+                            <div class="w-32 h-5 bg-gray-800 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-10"></div>
+                            <div class="w-full h-full bg-white rounded-[2rem] overflow-hidden">
+                                <img src="IMG_3851%20(1).PNG" alt="Comandas Abertas" class="w-full h-full object-cover object-top">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-fade-in">
+                        <h3 class="text-3xl font-semibold text-white mb-4">Gestão de Comandas Abertas</h3>
+                        <p class="text-brand-grayText text-lg leading-relaxed">Tenha uma visão clara e unificada de todos os pedidos em andamento. Inicie preparos, realize cancelamentos e gerencie entregas rapidamente, garantindo que nenhum detalhe passe despercebido durante o atendimento.</p>
+                    </div>
+                </div>
+
+                <!-- Tela 2: Direita -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 autoprime-reveal">
+                    <div class="w-full md:w-1/2 flex justify-center phone-slide-right">
+                        <div class="w-[280px] h-[580px] bg-brand-darker rounded-[2.5rem] p-2 border-[6px] border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative flex-shrink-0">
+                            <div class="w-32 h-5 bg-gray-800 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-10"></div>
+                            <div class="w-full h-full bg-white rounded-[2rem] overflow-hidden">
+                                <img src="IMG_3852%20(1).PNG" alt="Fluxo de Pagamentos" class="w-full h-full object-cover object-top">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-fade-in">
+                        <h3 class="text-3xl font-semibold text-white mb-4">Fluxo de Cobrança Integrado</h3>
+                        <p class="text-brand-grayText text-lg leading-relaxed">Controle financeiro seguro diretamente na palma da mão. Sinalize fechamentos, acione rotinas de cobrança e dê baixa em comandas pagas com apenas um toque. Menos filas e mais agilidade na finalização dos pedidos.</p>
+                    </div>
+                </div>
+
+                <!-- Tela 3: Esquerda -->
+                <div class="flex flex-col md:flex-row items-center gap-12 autoprime-reveal">
+                    <div class="w-full md:w-1/2 flex justify-center phone-slide-left">
+                        <div class="w-[280px] h-[580px] bg-brand-darker rounded-[2.5rem] p-2 border-[6px] border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative flex-shrink-0">
+                            <div class="w-32 h-5 bg-gray-800 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-10"></div>
+                            <div class="w-full h-full bg-white rounded-[2rem] overflow-hidden">
+                                <img src="IMG_3853%20(1).PNG" alt="Cardápio e Taxas" class="w-full h-full object-cover object-top">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-fade-in">
+                        <h3 class="text-3xl font-semibold text-white mb-4">Configurações Dinâmicas e Cardápio</h3>
+                        <p class="text-brand-grayText text-lg leading-relaxed">Personalize taxas extras, custos fixos e impostos de forma intuitiva. Acesse o gerenciador de cardápios e insumos para adicionar itens, atualizar preços e controlar disponibilidades num sistema centralizado.</p>
+                    </div>
+                </div>
+
+                <!-- Tela 4: Direita -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 autoprime-reveal">
+                    <div class="w-full md:w-1/2 flex justify-center phone-slide-right">
+                        <div class="w-[280px] h-[580px] bg-brand-darker rounded-[2.5rem] p-2 border-[6px] border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative flex-shrink-0">
+                            <div class="w-32 h-5 bg-gray-800 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-10"></div>
+                            <div class="w-full h-full bg-white rounded-[2rem] overflow-hidden">
+                                <img src="IMG_3854%20(1).PNG" alt="Painel do Perfil" class="w-full h-full object-cover object-top">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-fade-in">
+                        <h3 class="text-3xl font-semibold text-white mb-4">Perfil Completo e Cadastros</h3>
+                        <p class="text-brand-grayText text-lg leading-relaxed">Mantenha os dados essenciais sempre atualizados. Com uma seção de perfil organizada, você visualiza todas as informações vitais da operação para garantir segurança, compliance e facilidade na comunicação e repasses.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-brand-dark border-t border-white/5 pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
-                <div class="max-w-xs">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-brand-accent rounded-lg flex items-center justify-center text-brand-dark font-black">LS</div>
-                        <span class="text-white font-bold text-xl uppercase italic">LS Agent AI</span>
-                    </div>
-                    <p class="text-slate-500 text-sm leading-relaxed">
-                        Líderes em automação inteligente e desenvolvimento administrativo focado em performance e escala.
-                    </p>
-                </div>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-12 md:gap-24">
-                    <div>
-                        <h6 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Navegação</h6>
-                        <ul class="space-y-4 text-sm text-slate-500">
-                            <li><a href="#home" class="hover:text-brand-accent transition">Home</a></li>
-                            <li><a href="#servicos" class="hover:text-brand-accent transition">Serviços</a></li>
-                            <li><a href="#apps" class="hover:text-brand-accent transition">Cases</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h6 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Legal</h6>
-                        <ul class="space-y-4 text-sm text-slate-500">
-                            <li><a href="#" class="hover:text-brand-accent transition">Privacidade</a></li>
-                            <li><a href="#" class="hover:text-brand-accent transition">Termos</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h6 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Social</h6>
-                        <div class="flex gap-4">
-                            <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-brand-accent hover:text-brand-dark transition"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
-                            <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-brand-accent hover:text-brand-dark transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+    <!-- Modal ClickBeach -->
+    <div id="clickbeach-modal" class="fixed inset-0 z-[100] hidden bg-brand-dark/95 backdrop-blur-md overflow-y-auto">
+        <div class="min-h-screen py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative">
+            <button onclick="toggleClickBeachModal()" class="absolute top-8 right-8 text-brand-grayText hover:text-white transition bg-white/5 p-3 rounded-full hover:bg-white/10">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-28 autoprime-reveal pt-10">
+                <h2 class="text-4xl md:text-5xl font-semibold text-white mb-6">Conheça o ClickBeach</h2>
+                <p class="text-brand-grayText text-lg max-w-2xl mx-auto">A solução definitiva para automatizar e otimizar as operações do seu negócio no litoral. Gestão ágil e na palma da sua mão.</p>
+            </div>
+
+            <div class="space-y-32 pb-20">
+                <!-- Tela 1: Esquerda -->
+                <div class="flex flex-col md:flex-row items-center gap-12 autoprime-reveal">
+                    <div class="w-full md:w-1/2 flex justify-center phone-slide-left">
+                        <div class="w-[280px] h-[580px] bg-brand-darker rounded-[2.5rem] p-2 border-[6px] border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative flex-shrink-0">
+                            <div class="w-32 h-5 bg-gray-800 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-10"></div>
+                            <div class="w-full h-full bg-white rounded-[2rem] overflow-hidden">
+                                <img src="image_4337d9.png" alt="Dashboard Principal" class="w-full h-full object-cover object-top">
+                            </div>
                         </div>
                     </div>
+                    <div class="w-full md:w-1/2 text-fade-in">
+                        <h3 class="text-3xl font-semibold text-white mb-4">Painel de Operações em Tempo Real</h3>
+                        <p class="text-brand-grayText text-lg leading-relaxed">Acompanhe as vendas, fluxo de clientes e ocupação do seu espaço em tempo real. O dashboard intuitivo do ClickBeach fornece as métricas essenciais para você tomar decisões rápidas durante os momentos de pico.</p>
+                    </div>
+                </div>
+
+                <!-- Tela 2: Direita -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 autoprime-reveal">
+                    <div class="w-full md:w-1/2 flex justify-center phone-slide-right">
+                        <div class="w-[280px] h-[580px] bg-brand-darker rounded-[2.5rem] p-2 border-[6px] border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative flex-shrink-0">
+                            <div class="w-32 h-5 bg-gray-800 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-10"></div>
+                            <div class="w-full h-full bg-white rounded-[2rem] overflow-hidden">
+                                <img src="image_4337d9.png" alt="Controle de Pedidos" class="w-full h-full object-cover object-top">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-fade-in">
+                        <h3 class="text-3xl font-semibold text-white mb-4">Controle Dinâmico de Pedidos</h3>
+                        <p class="text-brand-grayText text-lg leading-relaxed">Chega de confusão com anotações de papel. Registre os pedidos dos clientes diretamente pelo sistema, envie instantaneamente para o preparo e evite esquecimentos ou erros na entrega e cobrança.</p>
+                    </div>
+                </div>
+
+                <!-- Tela 3: Esquerda -->
+                <div class="flex flex-col md:flex-row items-center gap-12 autoprime-reveal">
+                    <div class="w-full md:w-1/2 flex justify-center phone-slide-left">
+                        <div class="w-[280px] h-[580px] bg-brand-darker rounded-[2.5rem] p-2 border-[6px] border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative flex-shrink-0">
+                            <div class="w-32 h-5 bg-gray-800 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-10"></div>
+                            <div class="w-full h-full bg-white rounded-[2rem] overflow-hidden">
+                                <img src="image_4337d9.png" alt="Gestão de Mesas" class="w-full h-full object-cover object-top">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-fade-in">
+                        <h3 class="text-3xl font-semibold text-white mb-4">Gestão de Mesas e Atendimento</h3>
+                        <p class="text-brand-grayText text-lg leading-relaxed">Mapeie suas áreas de atendimento de forma inteligente. Saiba exatamente quais mesas estão ocupadas, aguardando pedido ou prontas para fechamento, garantindo um giro de clientes muito mais produtivo.</p>
+                    </div>
+                </div>
+
+                <!-- Tela 4: Direita -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 autoprime-reveal">
+                    <div class="w-full md:w-1/2 flex justify-center phone-slide-right">
+                        <div class="w-[280px] h-[580px] bg-brand-darker rounded-[2.5rem] p-2 border-[6px] border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative flex-shrink-0">
+                            <div class="w-32 h-5 bg-gray-800 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-10"></div>
+                            <div class="w-full h-full bg-white rounded-[2rem] overflow-hidden">
+                                <img src="image_4337d9.png" alt="Fechamento de Caixa" class="w-full h-full object-cover object-top">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-fade-in">
+                        <h3 class="text-3xl font-semibold text-white mb-4">Fechamento de Caixa Descomplicado</h3>
+                        <p class="text-brand-grayText text-lg leading-relaxed">Encerre o dia com tranquilidade. O sistema calcula automaticamente faturamentos, taxas e formas de pagamento, fornecendo relatórios detalhados sem a necessidade de recontagens manuais e horas perdidas.</p>
+                    </div>
                 </div>
             </div>
-            
-            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600 font-medium">
-                <p>© 2024 LS AGENT AI - SOLUTIONS & AUTOMATION. CNPJ 00.000.000/0001-00</p>
-                <p>DESIGNED BY LS CREATIVE</p>
-            </div>
         </div>
-    </footer>
+    </div>
 
     <!-- Scripts -->
     <script>
         // Inicializa ícones
         lucide.createIcons();
 
-        // Mobile Menu Toggle
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
-            menu.classList.toggle('hidden');
-            
-            // Troca ícone entre menu e X
-            if (menu.classList.contains('hidden')) {
-                icon.setAttribute('data-lucide', 'menu');
-            } else {
-                icon.setAttribute('data-lucide', 'x');
-            }
-            lucide.createIcons();
-        }
-
-        // Modal Toggle
-        function toggleModal(modalId) {
-            const modal = document.getElementById(modalId);
-            const isHidden = modal.classList.contains('hidden');
-            
-            if (isHidden) {
+        // Lógica do Modal Autoprime e Animações
+        function toggleAutoprimeModal() {
+            const modal = document.getElementById('autoprime-modal');
+            if (modal.classList.contains('hidden')) {
                 modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                document.body.classList.add('modal-open');
+                document.body.style.overflow = 'hidden';
+                lucide.createIcons();
+                observeModalElements();
             } else {
                 modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                document.body.classList.remove('modal-open');
+                document.body.style.overflow = 'auto';
+                // Reseta classes para a animação acontecer de novo
+                document.querySelectorAll('.autoprime-reveal').forEach(el => {
+                    el.classList.remove('is-visible');
+                });
             }
         }
 
-        // Reveal Animation on Scroll
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        // Lógica do Modal ClickBeach e Animações
+        function toggleClickBeachModal() {
+            const modal = document.getElementById('clickbeach-modal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                lucide.createIcons();
+                observeModalElements();
+            } else {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                // Reseta classes para a animação acontecer de novo
+                document.querySelectorAll('.autoprime-reveal').forEach(el => {
+                    el.classList.remove('is-visible');
+                });
+            }
+        }
+
+        function observeModalElements() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.autoprime-reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Lógica para mudar os números e gráficos do dashboard a cada 3 dias
+        function updateDashboardDynamicData() {
+            // Calcula o "epoch" de 3 dias atual
+            const now = new Date();
+            const threeDaysInMs = 3 * 24 * 60 * 60 * 1000;
+            const epoch = Math.floor(now.getTime() / threeDaysInMs);
+
+            // Gerador de números pseudoaleatórios baseado no epoch
+            // Isso garante que os números sejam aleatórios, mas fixos dentro da janela de 3 dias
+            function pseudoRandom(seed) {
+                var x = Math.sin(seed) * 10000;
+                return x - Math.floor(x);
+            }
+
+            // --- Atualiza Dashboard 1 (Home) ---
+            const d1v1 = document.getElementById('dash-home-val1');
+            const d1v2 = document.getElementById('dash-home-val2');
+            const d1v3 = document.getElementById('dash-home-val3');
+            
+            if(d1v1) d1v1.innerText = Math.floor(100 + pseudoRandom(epoch + 1) * 80);
+            if(d1v2) d1v2.innerText = (Math.floor(1000 + pseudoRandom(epoch + 2) * 500)).toLocaleString('pt-BR') + 'h';
+            if(d1v3) d1v3.innerText = (Math.floor(2000 + pseudoRandom(epoch + 3) * 1500)).toLocaleString('pt-BR');
+
+            // Barras do gráfico Home
+            const bars = document.querySelectorAll('.dash-home-bar');
+            bars.forEach((bar, index) => {
+                const height = 30 + pseudoRandom(epoch + 10 + index) * 70;
+                bar.style.height = height + '%';
+            });
+
+            // Círculo percentual Home
+            const circle = document.getElementById('dash-home-circle');
+            const percText = document.getElementById('dash-home-perc');
+            if(circle && percText) {
+                const perc = Math.floor(85 + pseudoRandom(epoch + 20) * 14); // Entre 85% e 99%
+                percText.innerText = perc + '%';
+                // Calculo do dashoffset para o efeito de preenchimento
+                const offset = 226 - (226 * (perc / 100));
+                circle.style.strokeDashoffset = offset;
+            }
+
+            // --- Atualiza Dashboard 2 (Sistemas) ---
+            const d2v1 = document.getElementById('dash-sys-val1');
+            const d2v2 = document.getElementById('dash-sys-val2');
+            const d2v3 = document.getElementById('dash-sys-val3');
+
+            if(d2v1) d2v1.innerText = 'R$ ' + (Math.floor(150000 + pseudoRandom(epoch + 4) * 150000)).toLocaleString('pt-BR');
+            if(d2v2) d2v2.innerText = Math.floor(80 + pseudoRandom(epoch + 5) * 60);
+            if(d2v3) d2v3.innerText = Math.floor(200 + pseudoRandom(epoch + 6) * 200);
+
+            // Gráfico de linha Sistemas
+            const polyline = document.getElementById('dash-sys-line');
+            if (polyline) {
+                let points = "";
+                for(let i=0; i<=5; i++) {
+                    let x = i * 20; // 0, 20, 40, 60, 80, 100 (eixo X)
+                    let y = 2 + pseudoRandom(epoch + 30 + i) * 26; // eixo Y invertido (0 é o topo)
+                    points += `${x},${y} `;
                 }
+                polyline.setAttribute('points', points.trim());
             }
         }
-        window.addEventListener("scroll", reveal);
-        // Trigger inicial
-        reveal();
 
-        // Envio do formulário para o Tally
+        // Executa a lógica após o DOM estar pronto
+        window.addEventListener('DOMContentLoaded', updateDashboardDynamicData);
+
+        // Envio do formulário para o Tally (mantendo a lógica solicitada anteriormente)
         function handleForm(event) {
             event.preventDefault();
             const btn = document.getElementById('submit-btn');
             const originalText = btn.innerHTML;
             
-            // Captura os valores dos campos sincronizados com o link dWWZRA
             const inputs = event.target.querySelectorAll('input');
             const nome = inputs[0].value;
-            const whatsapp = inputs[1].value;
-            const empresa = inputs[2].value;
-            const processo = event.target.querySelector('textarea').value;
+            const email = inputs[1].value;
+            const telefone = inputs[2].value;
+            const mensagem = event.target.querySelector('textarea').value;
             
-            // Constrói a URL do Tally com parâmetros pré-preenchidos (se suportado pelo formulário)
-            // Caso contrário, redireciona diretamente para o link oficial
-            const linkTally = `https://tally.so/r/dWWZRA?nome=${encodeURIComponent(nome)}&whatsapp=${encodeURIComponent(whatsapp)}&empresa=${encodeURIComponent(empresa)}&processo=${encodeURIComponent(processo)}`;
+            // Link Tally
+            const linkTally = `https://tally.so/r/dWWZRA?nome=${encodeURIComponent(nome)}&email=${encodeURIComponent(email)}&telefone=${encodeURIComponent(telefone)}&mensagem=${encodeURIComponent(mensagem)}`;
 
-            btn.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin mx-auto"></i>';
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin mx-auto"></i>';
             lucide.createIcons();
             btn.disabled = true;
             
             setTimeout(() => {
                 btn.innerHTML = 'REDIRECIONANDO...';
-                btn.classList.remove('bg-white');
-                btn.classList.add('bg-blue-500', 'text-white');
+                btn.classList.remove('bg-brand-dark');
+                btn.classList.add('bg-brand-accent', 'text-brand-dark');
                 
-                // Redireciona para o formulário do Tally
                 window.location.href = linkTally;
             }, 1000);
         }
