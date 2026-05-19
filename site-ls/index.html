@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LS Agent AI - Automação de IA & Sistemas Premium</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjRDZDNkE1Ii8+PHRleHQgeD0iNTAiIHk9IjUyIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDUiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMDUwNTA3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCI+TFM8L3RleHQ+PC9zdmc+">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -41,6 +44,9 @@
 
     <!-- Fontes Google -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
         /* CSS GLOBAL PREMIUM E RESPONSIVO */
@@ -1000,8 +1006,21 @@
 
         window.addEventListener('DOMContentLoaded', updateDashboardDynamicData);
 
-        // Envio do formulário para o Tally
-        function handleForm(event) {
+        // Configuração do Supabase
+        const supabaseUrl = 'https://vzcrfnyfiqsfrwswlvyf.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ6Y3JmbnlmaXFzZnJ3c3dsdnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyMTQ1NjksImV4cCI6MjA5NDc5MDU2OX0.es2duCl9cJQjSH787kCxtUbl-UqqcwedvKF5lf-uc7s';
+        let supabaseClient;
+        
+        try {
+            if (typeof supabase !== 'undefined') {
+                supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+            }
+        } catch (error) {
+            console.error("Erro ao inicializar o Supabase:", error);
+        }
+
+        // Envio do formulário para o Supabase
+        async function handleForm(event) {
             event.preventDefault();
             const btn = document.getElementById('submit-btn');
             
@@ -1010,18 +1029,39 @@
             const email = inputs[1].value;
             const telefone = inputs[2].value;
             const mensagem = event.target.querySelector('textarea').value;
-            
-            const linkTally = `https://tally.so/r/dWWZRA?nome=${encodeURIComponent(nome)}&email=${encodeURIComponent(email)}&telefone=${encodeURIComponent(telefone)}&mensagem=${encodeURIComponent(mensagem)}`;
 
             btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin text-yellow-500"></i> Processando...';
             lucide.createIcons();
             btn.disabled = true;
             btn.classList.add('opacity-80', 'cursor-not-allowed');
             
+            if (supabaseClient) {
+                try {
+                    const { error } = await supabaseClient
+                        .from('contatos') // A tabela deve estar criada no Supabase com este nome
+                        .insert([
+                            { nome: nome, email: email, telefone: telefone, mensagem: mensagem }
+                        ]);
+
+                    if (error) throw error;
+
+                    btn.innerHTML = 'Enviado com sucesso! <i data-lucide="check" class="w-4 h-4 text-green-400"></i>';
+                    lucide.createIcons();
+                    event.target.reset();
+                } catch (error) {
+                    console.error('Erro ao enviar:', error);
+                    btn.innerHTML = 'Erro ao enviar. Tente novamente.';
+                }
+            } else {
+                btn.innerHTML = 'Erro de conexão com o banco.';
+            }
+            
             setTimeout(() => {
-                btn.innerHTML = 'Redirecionando ambiente seguro...';
-                window.location.href = linkTally;
-            }, 1000);
+                btn.innerHTML = 'Iniciar atendimento seguro <i data-lucide="shield-check" class="w-4 h-4 text-yellow-500"></i>';
+                btn.disabled = false;
+                btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                lucide.createIcons();
+            }, 4000);
         }
     </script>
 </body>
